@@ -5,6 +5,8 @@ const port = 3000;
 const restaurantRouter = require("./routes/restaurant_routes");
 const adminRouter = require("./routes/admin_routes");
 
+const mongoose = require('mongoose');
+
 app.use(express.static("src"));
 
 app.get("/", (req, res) => {
