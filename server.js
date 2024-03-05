@@ -5,6 +5,8 @@ const port = 3000;
 const customerRouter = require("./routes/cust_routes");
 const adminRouter = require("./routes/admin_routes");
 
+app.use(express.static('src'));
+
 app.get("/", (req, res) => {
   res.sendFile("src/index.html", { root: __dirname });
 });
