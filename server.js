@@ -7,6 +7,14 @@ const adminRouter = require("./routes/admin_routes");
 
 const mongoose = require('mongoose');
 
+//const mongoDB = 'connection....';
+//mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true });
+//const db = mongoose.connection;
+//db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+//db.once('open', function(callback) {
+//    console.log("Database Connection succeeded");
+//})
+
 app.use(express.static("src"));
 
 app.get("/", (req, res) => {
