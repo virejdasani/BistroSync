@@ -6,7 +6,7 @@ const customerRouter = require("./routes/cust_routes");
 const adminRouter = require("./routes/admin_routes");
 
 app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: __dirname });
+  res.sendFile("src/index.html", { root: __dirname });
 });
 
 app.use("/customer", customerRouter);
