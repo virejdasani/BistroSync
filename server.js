@@ -21,17 +21,9 @@ app.get("/", (req, res) => {
   res.redirect("/restaurant");
 });
 
-app.get("/admin", (req, res) => {
-  res.sendFile("src/admin/index.html", { root: __dirname });
-});
-
-app.get("/restaurant", (req, res) => {
-  res.sendFile("src/restaurant/index.html", { root: __dirname });
-});
-
 app.use("/restaurant", restaurantRouter);
 
-app.use("/admin", adminRouter);
+app.use("/restaurant/admin", adminRouter);
 
 app.listen(port, () => {
   console.log("Started server");

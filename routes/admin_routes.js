@@ -3,13 +3,16 @@ const router = express.Router();
 
 const path = require('path');
 
-router.get('/', (req, res) => {
-    res.send('admin side');
+router.get('/', function(req, res) {
+    res.redirect('login');
 });
 
-router.get('/login', (req, res) => {
-    res.sendFile(path.resolve("src/admin/login.html"));
-});
-
+router.route('/login')
+    .get(function(req, res) {
+        res.sendFile(path.resolve("src/admin/login.html"));
+    })
+    .post(function(req, res) {
+        res.send('login post');
+    });
 
 module.exports = router;
