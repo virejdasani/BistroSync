@@ -16,6 +16,8 @@ const mongoose = require('mongoose');
 //})
 
 app.use(express.static("src"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
   res.redirect("/restaurant");

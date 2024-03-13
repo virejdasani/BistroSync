@@ -14,7 +14,8 @@ router.route('/login')
         res.sendFile(path.resolve("src/admin/login.html"));
     })
     .post(function(req, res) {
-        res.send('login post');
+        const {username, password} = req.body;
+        res.send(`Username: ${username}, Password: ${password}`);
     });
 
 module.exports = router;
