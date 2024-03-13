@@ -27,6 +27,11 @@ const userSchema = new Schema({
     admin: {
         type: Boolean,
         required: true
+    },
+    company: {
+        type: Schema.Types.ObjectId,
+        ref: 'Company',
+        default: null
     }
 });
 
