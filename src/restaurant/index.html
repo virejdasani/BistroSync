@@ -2,159 +2,102 @@
 <html lang="en">
 
 <head>
+    <!-- TODO: add google analytics -->
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My awesome food store</title>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <link rel="stylesheet" href="./css/style.css">
+    <!-- favicon -->
+    <link rel="icon" href="compsoclogo.png" type="image/png">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Restaurant Name Menu</title>
 </head>
 
 <body>
-    <div class="main-wrapper">
+    <header class="l-header" id="header">
+        <nav class="nav bd-grid">
+            <a href="#" class="nav_logo">BistroSync</a>
+            <a href="#" class="nav_logo">Restaurant Name</a>
+        </nav>
+    </header>
 
-        <div class="site-content-wrapper">
-            <div class="nav-trigger">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-bar-chart">
-                    <line x1="12" y1="20" x2="12" y2="10" />
-                    <line x1="18" y1="20" x2="18" y2="4" />
-                    <line x1="6" y1="20" x2="6" y2="16" /></svg>
-            </div>
-            <div class="site-content">
-                <section class="top-products">
-                    <div class="container">
-                        <h1 class="section-heading">Menu</h1>
-                        <div class="slider">
-                            <button class="slider-btn prev-btn"><img src="./icons/pre.svg" alt=""></button>
-                            <button class="slider-btn next-btn"><img src="./icons/next.svg" alt=""></button>
-                            <div class="food-slider">
-                                <div class="food-card magic-shadow-sm">
-                                    <div class="product-image flex items-center justify-center">
-                                        <img src="./images/plate-1.png" alt="">
-                                    </div>
-                                    <hr>
-                                    <div>
-                                        <h2 class="text-center">Summer Salad</h2>
-                                        <div class="stars flex justify-center items-center">
-                                            <img src="./icons/start-filled.svg" alt="">
-                                            <img src="./icons/start-filled.svg" alt="">
-                                            <img src="./icons/start-filled.svg" alt="">
-                                            <img src="./icons/star-grey.svg" alt="">
-                                            <img src="./icons/star-grey.svg" alt="">
-                                        </div>
-                                        <div class="price text-center">
-                                            $ 1.25
-                                        </div>
-                                        <div class="flex justify-center">
-                                            <button>
-                                                <img src="./icons/cart-2.svg" alt="">
-                                                <span>Add to cart</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="food-card magic-shadow-sm">
-                                    <div class="product-image flex items-center justify-center">
-                                        <img src="./images/plate-2.png" alt="">
-                                    </div>
-                                    <hr>
-                                    <div>
-                                        <h2 class="text-center">Russian Salad</h2>
-                                        <div class="stars flex justify-center items-center">
-                                            <img src="./icons/start-filled.svg" alt="">
-                                            <img src="./icons/start-filled.svg" alt="">
-                                            <img src="./icons/start-filled.svg" alt="">
-                                            <img src="./icons/star-grey.svg" alt="">
-                                            <img src="./icons/star-grey.svg" alt="">
-                                        </div>
-                                        <div class="price text-center">
-                                            $ 1.25
-                                        </div>
-                                        <div class="flex justify-center">
-                                            <button>
-                                                <img src="./icons/cart-2.svg" alt="">
-                                                <span>Add to cart</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="food-card magic-shadow-sm">
-                                    <div class="product-image flex items-center justify-center">
-                                        <img src="./images/plate-3.png" alt="">
-                                    </div>
-                                    <hr>
-                                    <div>
-                                        <h2 class="text-center">Greek Salad</h2>
-                                        <div class="stars flex justify-center items-center">
-                                            <img src="./icons/start-filled.svg" alt="">
-                                            <img src="./icons/start-filled.svg" alt="">
-                                            <img src="./icons/start-filled.svg" alt="">
-                                            <img src="./icons/star-grey.svg" alt="">
-                                            <img src="./icons/star-grey.svg" alt="">
-                                        </div>
-                                        <div class="price text-center">
-                                            $ 1.25
-                                        </div>
-                                        <div class="flex justify-center">
-                                            <button>
-                                                <img src="./icons/cart-2.svg" alt="">
-                                                <span>Add to cart</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="food-card magic-shadow-sm">
-                                    <div class="product-image flex items-center justify-center">
-                                        <img src="./images/plate-3.png" alt="">
-                                    </div>
-                                    <hr>
-                                    <div>
-                                        <h2 class="text-center">Cottage pie</h2>
-                                        <div class="stars flex justify-center items-center">
-                                            <img src="./icons/start-filled.svg" alt="">
-                                            <img src="./icons/start-filled.svg" alt="">
-                                            <img src="./icons/start-filled.svg" alt="">
-                                            <img src="./icons/star-grey.svg" alt="">
-                                            <img src="./icons/star-grey.svg" alt="">
-                                        </div>
-                                        <div class="price text-center">
-                                            $ 1.25
-                                        </div>
-                                        <div class="flex justify-center">
-                                            <button>
-                                                <img src="./icons/cart-2.svg" alt="">
-                                                <span>Add to cart</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center btn-wrapper">
-                            <button class="btn btn-secondary">View More</button>
-                        </div>
-                    </div>
-                </section>
+    <section class="featured section" id="featured">
+        <h2 class="section-title">Menu</h2>
+        <div class="featured_container bd-grid">
+            <!-- TODO: rename all css classes to make them bistrosync specific -->
+            <!-- TODO: add all this data from js through the api through the database -->
+            <!-- TODO: Get the images to be the same dimensions -->
+            <article class="hoodies">
+                <!-- <div class="hoodies_sale">18+</div> -->
+                <img src="./images/plate-3.png" alt="" class="hoodies_img">
+                <span class="hoodie_name">Herbivore food</span>
+                <p class="collection_desc">This food is very lorem and very ipsum</p>
+                <span class="hoodie_price">£11.99</span>
+                <a href="#" class="button-light">Add to basket<i class='bx bx-right-arrow button-icon'></i></a>
+            </article>
+            <article class="hoodies">
+                <!-- <div class="hoodies_sale">18+</div> -->
+                <img src="./images/plate-2.png" alt="" class="hoodies_img">
+                <span class="hoodie_name">Herbivore food</span>
+                <p class="collection_desc">This food is very lorem and very ipsum</p>
+                <span class="hoodie_price">£11.99</span>
+                <a href="#" class="button-light">Add to basket<i class='bx bx-right-arrow button-icon'></i></a>
+            </article>
+            <article class="hoodies">
+                <!-- <div class="hoodies_sale">18+</div> -->
+                <img src="./images/plate-1.png" alt="" class="hoodies_img">
+                <span class="hoodie_name">Herbivore food</span>
+                <p class="collection_desc">This food is very lorem and very ipsum</p>
+                <span class="hoodie_price">£11.99</span>
+                <a href="#" class="button-light">Add to basket<i class='bx bx-right-arrow button-icon'></i></a>
+            </article>
 
-                <footer class="copyright">
-                    <div>
-                        Copyright © 2024 COMP208 group 14</a>.
-                    </div>
-                </footer>
+            <article class="hoodies">
+                <!-- <div class="hoodies_sale">18+</div> -->
+                <img src="./images/plate-1.png" alt="" class="hoodies_img">
+                <span class="hoodie_name">Herbivore food</span>
+                <p class="collection_desc">This food is very lorem and very ipsum</p>
+                <span class="hoodie_price">£11.99</span>
+                <a href="#" class="button-light">Add to basket<i class='bx bx-right-arrow button-icon'></i></a>
+            </article>
+            <article class="hoodies">
+                <!-- <div class="hoodies_sale">18+</div> -->
+                <img src="./images/plate-3.png" alt="" class="hoodies_img">
+                <span class="hoodie_name">Herbivore food</span>
+                <p class="collection_desc">This food is very lorem and very ipsum</p>
+                <span class="hoodie_price">£11.99</span>
+                <a href="#" class="button-light">Add to basket<i class='bx bx-right-arrow button-icon'></i></a>
+            </article>
+            <article class="hoodies">
+                <!-- <div class="hoodies_sale">18+</div> -->
+                <img src="./images/plate-2.png" alt="" class="hoodies_img">
+                <span class="hoodie_name">Herbivore food</span>
+                <p class="collection_desc">This food is very lorem and very ipsum</p>
+                <span class="hoodie_price">£11.99</span>
+                <a href="#" class="button-light">Add to basket<i class='bx bx-right-arrow button-icon'></i></a>
+            </article>
+        </div>
+    </section>
+
+    <section newsletter section>
+        <div class="newsletter_container bd-grid">
+            <div>
+                <!-- ⚠️ -->
+                <h3 class="newsletter_title">lorem</h3>
+                <p class="newsletter_description">Maybe food alergy info goes here, under 25 ID check challenge goes
+                    here etc.</p>
+
+                <!-- <a href="" class="button">Proceed to checkout <i class='bx bx-right-arrow button-icon'></i></a> -->
             </div>
         </div>
-    </div>
+    </section>
+    </main>
 
+    <footer class="section">
+        <p class="footer_cr">© 2024 COMP208 group 14. All right reserved.</p>
+    </footer>
 
-
-
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="js/app.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>
