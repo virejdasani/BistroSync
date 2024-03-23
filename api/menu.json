@@ -1,0 +1,28 @@
+// json for menu
+// breakfast, lunch, dinner
+// TODO: Get the images to be the same dimensions
+// and food -> 
+
+{
+    "menu": {
+        "breakfast": {
+            "foodname": {
+                "id": 1,
+                "name": "foodname",
+                "price": 100,
+                "description": "food description",
+                "ingredients": ["ingredient1", "ingredient2"],
+                "allergens": ["allergen1", "allergen2"],
+                "idCheck": false,
+                "image": "foodimage"
+            },
+            "foodname2": {
+
+            }
+        },
+        "lunch": {},
+        "dinner": {},
+        "drinks": {}
+
+    }
+}
