@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const dinnerItemsContainer = document.getElementById("dinnerItems");
       const drinksItemsContainer = document.getElementById("drinksItems");
 
-      // Function to create HTML for a menu item
+      // function to create html for a menu item
       const createMenuItemHTML = (item) => {
         const showBlackBanner = item.idCheck || item.vegan;
         const blackBannerText = item.idCheck ? "18+" : "VEG";
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
       };
 
-      // Populate breakfast items
+      // populate breakfast items
       const breakfastItems = data.menu.breakfast;
       Object.keys(breakfastItems).forEach((key) => {
         const menuItem = breakfastItems[key];
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
         breakfastItemsContainer.innerHTML += menuItemHTML;
       });
 
-      // Populate main items
+      // populate main items
       const mainItems = data.menu.mainItems;
       Object.keys(mainItems).forEach((key) => {
         const menuItem = mainItems[key];
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         mainItemsContainer.innerHTML += menuItemHTML;
       });
 
-      // Populate dinner items
+      // populate dinner items
       const dinnerItems = data.menu.dinner;
       Object.keys(dinnerItems).forEach((key) => {
         const menuItem = dinnerItems[key];
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         dinnerItemsContainer.innerHTML += menuItemHTML;
       });
 
-      // Populate drinks items
+      // populate drinks items
       const drinksItems = data.menu.drinks;
       Object.keys(drinksItems).forEach((key) => {
         const menuItem = drinksItems[key];
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
         drinksItemsContainer.innerHTML += menuItemHTML;
       });
 
-      // Add event listeners to "Add to basket" buttons
+      // add event listeners to "Add to basket" buttons
       const addToCartButtons = document.querySelectorAll(".addToCartButton");
       addToCartButtons.forEach((button) => {
         button.addEventListener("click", () => {
