@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       // Populate main items
-      const mainItems = data.menu.main;
+      const mainItems = data.menu.mainItems;
       Object.keys(mainItems).forEach((key) => {
         const menuItem = mainItems[key];
         const menuItemHTML = createMenuItemHTML(menuItem);
