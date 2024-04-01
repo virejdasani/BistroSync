@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((response) => response.json())
     .then((data) => {
       const breakfastItemsContainer = document.getElementById("breakfastItems");
-      const lunchItemsContainer = document.getElementById("mainItems");
+      const mainItemsContainer = document.getElementById("mainItems");
       const dinnerItemsContainer = document.getElementById("dinnerItems");
       const drinksItemsContainer = document.getElementById("drinksItems");
 
@@ -35,12 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
         breakfastItemsContainer.innerHTML += menuItemHTML;
       });
 
-      // Populate lunch items
-      const lunchItems = data.menu.lunch;
-      Object.keys(lunchItems).forEach((key) => {
-        const menuItem = lunchItems[key];
+      // Populate main items
+      const mainItems = data.menu.main;
+      Object.keys(mainItems).forEach((key) => {
+        const menuItem = mainItems[key];
         const menuItemHTML = createMenuItemHTML(menuItem);
-        lunchItemsContainer.innerHTML += menuItemHTML;
+        mainItemsContainer.innerHTML += menuItemHTML;
       });
 
       // Populate dinner items

@@ -25,16 +25,16 @@
       }
     },
     "mainItems": {
-      "lunchitem1": {
+      "mainitem1": {
         "id": 3,
-        "name": "lunchitem1",
+        "name": "mainitem1",
         "price": 150,
         "description": "lunch description 1",
         "ingredients": ["ingredient5", "ingredient6"],
         "allergens": ["allergen5", "allergen6"],
         "idCheck": false,
         "vegan": false,
-        "image": "lunchimage1"
+        "image": "mainimage1"
       }
     },
     "dinner": {
