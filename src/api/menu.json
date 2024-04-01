@@ -10,7 +10,7 @@
         "allergens": ["allergen1", "allergen2"],
         "idCheck": false,
         "vegan": true,
-        "image": "foodimage"
+        "image": "https://tinyjpg.com/images/social/website.jpg"
       },
       "foodname2": {
         "id": 2,

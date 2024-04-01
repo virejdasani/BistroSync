@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
               divSale.textContent = item.idCheck ? "18+" : divSale.textContent;
               divSale.textContent = item.vegan ? "Ve" : divSale.textContent;
               const img = document.createElement("img");
-              img.src = `./images/${item.image}.png`;
+              img.src = item.image;
               img.alt = "";
               img.className = "hoodies_img";
               const spanName = document.createElement("span");
@@ -46,7 +46,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
               // append elements to the article
               a.appendChild(i);
-              article.appendChild(divSale);
+              if (item.idCheck || item.vegan) {
+                article.appendChild(divSale);
+              }
               article.appendChild(img);
               article.appendChild(spanName);
               article.appendChild(pDesc);
