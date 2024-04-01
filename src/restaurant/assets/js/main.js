@@ -22,8 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
               article.className = "hoodies";
               const divSale = document.createElement("div");
               divSale.className = "hoodies_sale";
-              divSale.textContent = item.idCheck ? "" : "18+";
-              divSale.textContent = item.vegan ? "Ve" : "";
+              divSale.textContent = item.idCheck ? "18+" : divSale.textContent;
+              divSale.textContent = item.vegan ? "Ve" : divSale.textContent;
               const img = document.createElement("img");
               img.src = `./images/${item.image}.png`;
               img.alt = "";
