@@ -1,5 +1,39 @@
 // render menu items from api
 document.addEventListener("DOMContentLoaded", () => {
+  const cart = [];
+
+  const addToCart = (item) => {
+    const existingItem = cart.find((cartItem) => cartItem.name === item.name);
+    if (existingItem) {
+      existingItem.quantity++;
+    } else {
+      cart.push({ ...item, quantity: 1 });
+    }
+    renderCart();
+  };
+
+  const renderCart = () => {
+    const cartItemsContainer = document.getElementById("cartItems");
+    cartItemsContainer.innerHTML = "";
+
+    cart.forEach((item) => {
+      cartItemsContainer.innerHTML += `<div>${item.name} ${
+        item.quantity > 1 ? `x${item.quantity}` : ""
+      } - £${(item.price * item.quantity).toFixed(2)}</div>`;
+    });
+
+    renderSubtotal();
+  };
+
+  const renderSubtotal = () => {
+    const subtotalContainer = document.getElementById("subtotal");
+    const subtotal = cart.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+    subtotalContainer.textContent = `Subtotal: £${subtotal.toFixed(2)}`;
+  };
+
   fetch(
     "https://raw.githubusercontent.com/virejdasani/BistroSync/main/src/api/menu.json"
   )
@@ -12,17 +46,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Function to create HTML for a menu item
       const createMenuItemHTML = (item) => {
-        const showSale = item.idCheck || item.vegan;
-        const saleText = item.idCheck ? "18+" : "VEG";
+        const showBlackBanner = item.idCheck || item.vegan;
+        const blackBannerText = item.idCheck ? "18+" : "VEG";
 
         return `
           <article class="hoodies">
-            ${showSale ? `<div class="hoodies_sale">${saleText}</div>` : ""}
+            ${
+              showBlackBanner
+                ? `<div class="hoodies_sale">${blackBannerText}</div>`
+                : ""
+            }
             <img src="${item.image}" alt="" class="hoodies_img">
             <span class="hoodie_name">${item.name}</span>
             <p class="collection_desc">${item.description}</p>
             <span class="hoodie_price">£${item.price.toFixed(2)}</span>
-            <a href="#" class="button-light">Add to basket<i class='bx bx-right-arrow button-icon'></i></a>
+            <button class="button-light addToCartButton" data-name="${
+              item.name
+            }" data-price="${
+          item.price
+        }">Add to basket<i class='bx bx-right-arrow button-icon'></i></button>
           </article>
         `;
       };
@@ -57,6 +99,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const menuItem = drinksItems[key];
         const menuItemHTML = createMenuItemHTML(menuItem);
         drinksItemsContainer.innerHTML += menuItemHTML;
+      });
+
+      // Add event listeners to "Add to basket" buttons
+      const addToCartButtons = document.querySelectorAll(".addToCartButton");
+      addToCartButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const name = button.getAttribute("data-name");
+          const price = parseFloat(button.getAttribute("data-price"));
+          addToCart({ name, price });
+        });
       });
     })
     .catch((error) => console.error("Error fetching menu:", error));

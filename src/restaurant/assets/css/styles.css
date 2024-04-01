@@ -63,6 +63,18 @@ body {
   padding: 20px;
 }
 
+.cartContainer {
+  width: 50%;
+  min-width: 400px;
+  margin: 0 auto;
+}
+
+.subtotalText {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 0.6rem;
+}
+
 h1,
 h2,
 h3,
