@@ -1,70 +1,65 @@
 // render menu items from api
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   fetch(
-    "https://raw.githubusercontent.com/virejdasani/BistroSync/main/src/api/menu.json?"
+    "https://raw.githubusercontent.com/virejdasani/BistroSync/main/src/api/menu.json"
   )
     .then((response) => response.json())
     .then((data) => {
-      const menuContainer = document.getElementById("menuContainer");
+      const breakfastItemsContainer = document.getElementById("breakfastItems");
+      const lunchItemsContainer = document.getElementById("lunchItems");
+      const dinnerItemsContainer = document.getElementById("dinnerItems");
+      const drinksItemsContainer = document.getElementById("drinksItems");
 
-      // loop through each category in the menu
-      for (const category in data.menu) {
-        if (data.menu.hasOwnProperty(category)) {
-          const items = data.menu[category];
+      // Function to create HTML for a menu item
+      const createMenuItemHTML = (item) => {
+        const showSale = item.idCheck || item.vegan;
+        const saleText = item.idCheck ? "18+" : "VEG";
 
-          // loop through each item in the category
-          for (const itemName in items) {
-            if (items.hasOwnProperty(itemName)) {
-              const item = items[itemName];
+        return `
+          <article class="hoodies">
+            ${showSale ? `<div class="hoodies_sale">${saleText}</div>` : ""}
+            <img src="${item.image}" alt="" class="hoodies_img">
+            <span class="hoodie_name">${item.name}</span>
+            <p class="collection_desc">${item.description}</p>
+            <span class="hoodie_price">£${item.price.toFixed(2)}</span>
+            <a href="#" class="button-light">Add to basket<i class='bx bx-right-arrow button-icon'></i></a>
+          </article>
+        `;
+      };
 
-              // create html elements for the menu item
-              const article = document.createElement("article");
-              article.className = "hoodies";
-              const divSale = document.createElement("div");
-              divSale.className = "hoodies_sale";
-              divSale.textContent = item.idCheck ? "18+" : divSale.textContent;
-              divSale.textContent = item.vegan ? "Ve" : divSale.textContent;
-              const img = document.createElement("img");
-              img.src = item.image;
-              img.alt = "";
-              img.className = "hoodies_img";
-              const spanName = document.createElement("span");
-              spanName.className = "hoodie_name";
-              spanName.textContent = item.name;
-              const pDesc = document.createElement("p");
-              pDesc.className = "collection_desc";
-              pDesc.textContent = item.description;
-              const spanPrice = document.createElement("span");
-              spanPrice.className = "hoodie_price";
-              spanPrice.textContent = `£${(item.price / 100).toFixed(2)}`;
-              const a = document.createElement("a");
-              a.href = "#";
-              a.className = "button-light";
-              a.textContent = "Add to basket";
-              const i = document.createElement("i");
-              i.className = "bx bx-right-arrow button-icon";
+      // Populate breakfast items
+      const breakfastItems = data.menu.breakfast;
+      Object.keys(breakfastItems).forEach((key) => {
+        const menuItem = breakfastItems[key];
+        const menuItemHTML = createMenuItemHTML(menuItem);
+        breakfastItemsContainer.innerHTML += menuItemHTML;
+      });
 
-              // append elements to the article
-              a.appendChild(i);
-              if (item.idCheck || item.vegan) {
-                article.appendChild(divSale);
-              }
-              article.appendChild(img);
-              article.appendChild(spanName);
-              article.appendChild(pDesc);
-              article.appendChild(spanPrice);
-              article.appendChild(a);
+      // Populate lunch items
+      const lunchItems = data.menu.lunch;
+      Object.keys(lunchItems).forEach((key) => {
+        const menuItem = lunchItems[key];
+        const menuItemHTML = createMenuItemHTML(menuItem);
+        lunchItemsContainer.innerHTML += menuItemHTML;
+      });
 
-              // Append article to the menu container
-              menuContainer.appendChild(article);
-            }
-          }
-        }
-      }
+      // Populate dinner items
+      const dinnerItems = data.menu.dinner;
+      Object.keys(dinnerItems).forEach((key) => {
+        const menuItem = dinnerItems[key];
+        const menuItemHTML = createMenuItemHTML(menuItem);
+        dinnerItemsContainer.innerHTML += menuItemHTML;
+      });
+
+      // Populate drinks items
+      const drinksItems = data.menu.drinks;
+      Object.keys(drinksItems).forEach((key) => {
+        const menuItem = drinksItems[key];
+        const menuItemHTML = createMenuItemHTML(menuItem);
+        drinksItemsContainer.innerHTML += menuItemHTML;
+      });
     })
-    .catch((error) => {
-      console.error("Error fetching menu:", error);
-    });
+    .catch((error) => console.error("Error fetching menu:", error));
 });
 
 // logic for mobile menu toggle
