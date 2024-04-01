@@ -2,111 +2,115 @@
 <html lang="en">
 
 <head>
-    <!-- TODO: add google analytics -->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- TODO: add favicon logo -->
-    <link rel="icon" href="" type="image/png">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Restaurant Name Menu</title>
+  <!-- TODO: add google analytics -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- TODO: add favicon logo -->
+  <link rel="icon" href="" type="image/png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <title>Restaurant Name Menu</title>
 </head>
 
 <body>
-    <header class="l-header" id="header">
-        <nav class="nav bd-grid">
-            <!-- <a href="#" class="nav_logo">BistroSync</a> -->
-            <a href="#" class="nav_logo">Restaurant Name</a>
+  <header class="l-header" id="header">
+    <nav class="nav bd-grid">
+      <!-- Phone navbar toggle -->
+      <div class="nav_toggle" id="nav-toggle">
+        <i class='bx bx-menu-alt-left'></i>
+      </div>
 
-            <div class="nav_menu" id="nav-menu">
-                <ul class="nav_list">
-                    <li class="nav_item"><a href="#breakfast" class="nav_link">Breakfast</a></li>
-                    <li class="nav_item"><a href="#mains" class="nav_link">Mains</a></li>
-                    <li class="nav_item"><a href="#drinks" class="nav_link">Drinks</a></li>
-                    <li class="nav_item"><a href="#desserts" class="nav_link">Desserts</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+      <a href="#" class="nav_logo">Restaurant Name</a>
 
-    <section class="featured section" id="featured">
-        <h2 class="section-title">Menu</h2>
-        <div class="featured_container bd-grid">
-            <!-- TODO: rename all css classes to make them bistrosync specific -->
-            <!-- TODO: add all this data from js through the api through the database -->
-            <!-- TODO: Get the images to be the same dimensions -->
-            <article class="hoodies">
-                <!-- <div class="hoodies_sale">18+</div> -->
-                <img src="./images/plate-3.png" alt="" class="hoodies_img">
-                <span class="hoodie_name">Herbivore food</span>
-                <p class="collection_desc">This food is very lorem and very ipsum</p>
-                <span class="hoodie_price">£11.99</span>
-                <a href="#" class="button-light">Add to basket<i class='bx bx-right-arrow button-icon'></i></a>
-            </article>
-            <article class="hoodies">
-                <div class="hoodies_sale">VEG</div>
-                <img src="./images/plate-2.png" alt="" class="hoodies_img">
-                <span class="hoodie_name">Herbivore food</span>
-                <p class="collection_desc">This food is very lorem and very ipsum</p>
-                <span class="hoodie_price">£11.99</span>
-                <a href="#" class="button-light">Add to basket<i class='bx bx-right-arrow button-icon'></i></a>
-            </article>
-            <article class="hoodies">
-                <!-- <div class="hoodies_sale">18+</div> -->
-                <img src="./images/plate-1.png" alt="" class="hoodies_img">
-                <span class="hoodie_name">Herbivore food</span>
-                <p class="collection_desc">This food is very lorem and very ipsum</p>
-                <span class="hoodie_price">£11.99</span>
-                <a href="#" class="button-light">Add to basket<i class='bx bx-right-arrow button-icon'></i></a>
-            </article>
+      <div class="nav_menu" id="nav-menu">
+        <ul class="nav_list">
+          <li class="nav_item"><a href="#breakfast" class="nav_link">Breakfast</a></li>
+          <li class="nav_item"><a href="#mains" class="nav_link">Mains</a></li>
+          <li class="nav_item"><a href="#drinks" class="nav_link">Drinks</a></li>
+          <li class="nav_item"><a href="#desserts" class="nav_link">Desserts</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
-            <article class="hoodies">
-                <div class="hoodies_sale">VE</div>
-                <img src="./images/plate-1.png" alt="" class="hoodies_img">
-                <span class="hoodie_name">Herbivore food</span>
-                <p class="collection_desc">This food is very lorem and very ipsum</p>
-                <span class="hoodie_price">£11.99</span>
-                <a href="#" class="button-light">Add to basket<i class='bx bx-right-arrow button-icon'></i></a>
-            </article>
-            <article class="hoodies">
-                <div class="hoodies_sale">18+</div>
-                <img src="./images/plate-3.png" alt="" class="hoodies_img">
-                <span class="hoodie_name">Herbivore food</span>
-                <p class="collection_desc">This food is very lorem and very ipsum</p>
-                <span class="hoodie_price">£11.99</span>
-                <a href="#" class="button-light">Add to basket<i class='bx bx-right-arrow button-icon'></i></a>
-            </article>
-            <article class="hoodies">
-                <!-- <div class="hoodies_sale">18+</div> -->
-                <img src="./images/plate-2.png" alt="" class="hoodies_img">
-                <span class="hoodie_name">Herbivore food</span>
-                <p class="collection_desc">This food is very lorem and very ipsum</p>
-                <span class="hoodie_price">£11.99</span>
-                <a href="#" class="button-light">Add to basket<i class='bx bx-right-arrow button-icon'></i></a>
-            </article>
-        </div>
+  <section class="featured section" id="featured">
+    <h2 class="section-title">Menu</h2>
+    <div class="featured_container bd-grid">
+      <!-- TODO: rename all css classes to make them bistrosync specific -->
+      <!-- TODO: add all this data from js through the api through the database -->
+      <!-- TODO: Get the images to be the same dimensions -->
+      <article class="hoodies">
+        <!-- <div class="hoodies_sale">18+</div> -->
+        <img src="./images/plate-3.png" alt="" class="hoodies_img">
+        <span class="hoodie_name">Herbivore food</span>
+        <p class="collection_desc">This food is very lorem and very ipsum</p>
+        <span class="hoodie_price">£11.99</span>
+        <a href="#" class="button-light">Add to basket<i class='bx bx-right-arrow button-icon'></i></a>
+      </article>
+      <article class="hoodies">
+        <div class="hoodies_sale">VEG</div>
+        <img src="./images/plate-2.png" alt="" class="hoodies_img">
+        <span class="hoodie_name">Herbivore food</span>
+        <p class="collection_desc">This food is very lorem and very ipsum</p>
+        <span class="hoodie_price">£11.99</span>
+        <a href="#" class="button-light">Add to basket<i class='bx bx-right-arrow button-icon'></i></a>
+      </article>
+      <article class="hoodies">
+        <!-- <div class="hoodies_sale">18+</div> -->
+        <img src="./images/plate-1.png" alt="" class="hoodies_img">
+        <span class="hoodie_name">Herbivore food</span>
+        <p class="collection_desc">This food is very lorem and very ipsum</p>
+        <span class="hoodie_price">£11.99</span>
+        <a href="#" class="button-light">Add to basket<i class='bx bx-right-arrow button-icon'></i></a>
+      </article>
 
-    </section>
+      <article class="hoodies">
+        <div class="hoodies_sale">VE</div>
+        <img src="./images/plate-1.png" alt="" class="hoodies_img">
+        <span class="hoodie_name">Herbivore food</span>
+        <p class="collection_desc">This food is very lorem and very ipsum</p>
+        <span class="hoodie_price">£11.99</span>
+        <a href="#" class="button-light">Add to basket<i class='bx bx-right-arrow button-icon'></i></a>
+      </article>
+      <article class="hoodies">
+        <div class="hoodies_sale">18+</div>
+        <img src="./images/plate-3.png" alt="" class="hoodies_img">
+        <span class="hoodie_name">Herbivore food</span>
+        <p class="collection_desc">This food is very lorem and very ipsum</p>
+        <span class="hoodie_price">£11.99</span>
+        <a href="#" class="button-light">Add to basket<i class='bx bx-right-arrow button-icon'></i></a>
+      </article>
+      <article class="hoodies">
+        <!-- <div class="hoodies_sale">18+</div> -->
+        <img src="./images/plate-2.png" alt="" class="hoodies_img">
+        <span class="hoodie_name">Herbivore food</span>
+        <p class="collection_desc">This food is very lorem and very ipsum</p>
+        <span class="hoodie_price">£11.99</span>
+        <a href="#" class="button-light">Add to basket<i class='bx bx-right-arrow button-icon'></i></a>
+      </article>
+    </div>
 
-    <section newsletter section>
-        <div class="newsletter_container bd-grid">
-            <div>
-                <!-- ⚠️ -->
-                <h3 class="newsletter_title">lorem</h3>
-                <p class="newsletter_description">V = Vegetarian, VE = Vegan, GF = Gluten Free</p>
+  </section>
 
-                <!-- <a href="" class="button">Proceed to checkout <i class='bx bx-right-arrow button-icon'></i></a> -->
-            </div>
-        </div>
-    </section>
-    </main>
+  <section newsletter section>
+    <div class="newsletter_container bd-grid">
+      <div>
+        <!-- ⚠️ -->
+        <h3 class="newsletter_title">lorem</h3>
+        <p class="newsletter_description">V = Vegetarian, VE = Vegan, GF = Gluten Free</p>
 
-    <footer class="section">
-        <p class="footer_cr">© 2024 BistroSync COMP208 group 14. All right reserved.</p>
-    </footer>
+        <!-- <a href="" class="button">Proceed to checkout <i class='bx bx-right-arrow button-icon'></i></a> -->
+      </div>
+    </div>
+  </section>
+  </main>
 
-    <script src="assets/js/main.js"></script>
+  <footer class="section">
+    <p class="footer_cr">© 2024 BistroSync COMP208 group 14. All right reserved.</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
 </body>
 
 </html>
