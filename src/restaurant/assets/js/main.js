@@ -1,66 +1,69 @@
-// fetch this API: https://raw.githubusercontent.com/virejdasani/BistroSync/main/api/menu.json?
+// render menu items from api
+document.addEventListener("DOMContentLoaded", function () {
+  fetch(
+    "https://raw.githubusercontent.com/virejdasani/BistroSync/main/src/api/menu.json?"
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      const menuContainer = document.getElementById("menuContainer");
 
-// Function to fetch menu items from the API and render them
-async function fetchAndRenderMenu() {
-  try {
-    const response = await fetch(
-      "https://raw.githubusercontent.com/virejdasani/BistroSync/main/api/menu.json?"
-    );
-    const menuItems = await response.json();
-    const menuContainer = document.getElementById("menuContainer");
+      // loop through each category in the menu
+      for (const category in data.menu) {
+        if (data.menu.hasOwnProperty(category)) {
+          const items = data.menu[category];
 
-    // Iterate through each menu item and create HTML elements
-    menuItems.forEach((item) => {
-      const article = document.createElement("article");
-      article.className = "hoodies";
+          // loop through each item in the category
+          for (const itemName in items) {
+            if (items.hasOwnProperty(itemName)) {
+              const item = items[itemName];
 
-      const divSale = document.createElement("div");
-      divSale.className = "hoodies_sale";
-      divSale.textContent = item.label;
+              // create html elements for the menu item
+              const article = document.createElement("article");
+              article.className = "hoodies";
+              const divSale = document.createElement("div");
+              divSale.className = "hoodies_sale";
+              divSale.textContent = item.idCheck ? "" : "18+";
+              divSale.textContent = item.vegan ? "Ve" : "";
+              const img = document.createElement("img");
+              img.src = `./images/${item.image}.png`;
+              img.alt = "";
+              img.className = "hoodies_img";
+              const spanName = document.createElement("span");
+              spanName.className = "hoodie_name";
+              spanName.textContent = item.name;
+              const pDesc = document.createElement("p");
+              pDesc.className = "collection_desc";
+              pDesc.textContent = item.description;
+              const spanPrice = document.createElement("span");
+              spanPrice.className = "hoodie_price";
+              spanPrice.textContent = `£${(item.price / 100).toFixed(2)}`;
+              const a = document.createElement("a");
+              a.href = "#";
+              a.className = "button-light";
+              a.textContent = "Add to basket";
+              const i = document.createElement("i");
+              i.className = "bx bx-right-arrow button-icon";
 
-      const img = document.createElement("img");
-      img.src = item.image;
-      img.alt = item.name;
-      img.className = "hoodies_img";
+              // append elements to the article
+              a.appendChild(i);
+              article.appendChild(divSale);
+              article.appendChild(img);
+              article.appendChild(spanName);
+              article.appendChild(pDesc);
+              article.appendChild(spanPrice);
+              article.appendChild(a);
 
-      const spanName = document.createElement("span");
-      spanName.className = "hoodie_name";
-      spanName.textContent = item.name;
-
-      const pDesc = document.createElement("p");
-      pDesc.className = "collection_desc";
-      pDesc.textContent = item.description;
-
-      const spanPrice = document.createElement("span");
-      spanPrice.className = "hoodie_price";
-      spanPrice.textContent = `£${item.price}`;
-
-      const aButton = document.createElement("a");
-      aButton.href = "#";
-      aButton.className = "button-light";
-      aButton.textContent = "Add to basket";
-      const buttonIcon = document.createElement("i");
-      buttonIcon.className = "bx bx-right-arrow button-icon";
-      aButton.appendChild(buttonIcon);
-
-      // Append all elements to the article
-      article.appendChild(divSale);
-      article.appendChild(img);
-      article.appendChild(spanName);
-      article.appendChild(pDesc);
-      article.appendChild(spanPrice);
-      article.appendChild(aButton);
-
-      // Append the article to the menu container
-      menuContainer.appendChild(article);
+              // Append article to the menu container
+              menuContainer.appendChild(article);
+            }
+          }
+        }
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching menu:", error);
     });
-  } catch (error) {
-    console.error("Error fetching menu:", error);
-  }
-}
-
-// Call the function to fetch and render menu items
-fetchAndRenderMenu();
+});
 
 // logic for mobile menu toggle
 const showMenu = (toggleId, navId) => {

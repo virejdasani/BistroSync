@@ -9,6 +9,7 @@
         "ingredients": ["ingredient1", "ingredient2"],
         "allergens": ["allergen1", "allergen2"],
         "idCheck": false,
+        "vegan": true,
         "image": "foodimage"
       },
       "foodname2": {
@@ -19,6 +20,7 @@
         "ingredients": ["ingredient3", "ingredient4"],
         "allergens": ["allergen3", "allergen4"],
         "idCheck": true,
+        "vegan": false,
         "image": "foodimage2"
       }
     },
@@ -31,6 +33,7 @@
         "ingredients": ["ingredient5", "ingredient6"],
         "allergens": ["allergen5", "allergen6"],
         "idCheck": false,
+        "vegan": false,
         "image": "lunchimage1"
       }
     },
@@ -43,6 +46,7 @@
         "ingredients": ["ingredient7", "ingredient8"],
         "allergens": ["allergen7", "allergen8"],
         "idCheck": true,
+        "vegan": false,
         "image": "dinnerimage1"
       }
     },
@@ -55,6 +59,7 @@
         "ingredients": ["ingredient9", "ingredient10"],
         "allergens": ["allergen9", "allergen10"],
         "idCheck": false,
+        "vegan": false,
         "image": "drinkimage1"
       }
     }
