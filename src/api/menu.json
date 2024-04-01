@@ -1,0 +1,62 @@
+{
+  "menu": {
+    "breakfast": {
+      "foodname": {
+        "id": 1,
+        "name": "foodname",
+        "price": 100,
+        "description": "food description",
+        "ingredients": ["ingredient1", "ingredient2"],
+        "allergens": ["allergen1", "allergen2"],
+        "idCheck": false,
+        "image": "foodimage"
+      },
+      "foodname2": {
+        "id": 2,
+        "name": "foodname2",
+        "price": 120,
+        "description": "food description 2",
+        "ingredients": ["ingredient3", "ingredient4"],
+        "allergens": ["allergen3", "allergen4"],
+        "idCheck": true,
+        "image": "foodimage2"
+      }
+    },
+    "lunch": {
+      "lunchitem1": {
+        "id": 3,
+        "name": "lunchitem1",
+        "price": 150,
+        "description": "lunch description 1",
+        "ingredients": ["ingredient5", "ingredient6"],
+        "allergens": ["allergen5", "allergen6"],
+        "idCheck": false,
+        "image": "lunchimage1"
+      }
+    },
+    "dinner": {
+      "dinneritem1": {
+        "id": 4,
+        "name": "dinneritem1",
+        "price": 200,
+        "description": "dinner description 1",
+        "ingredients": ["ingredient7", "ingredient8"],
+        "allergens": ["allergen7", "allergen8"],
+        "idCheck": true,
+        "image": "dinnerimage1"
+      }
+    },
+    "drinks": {
+      "drink1": {
+        "id": 5,
+        "name": "drink1",
+        "price": 50,
+        "description": "drink description 1",
+        "ingredients": ["ingredient9", "ingredient10"],
+        "allergens": ["allergen9", "allergen10"],
+        "idCheck": false,
+        "image": "drinkimage1"
+      }
+    }
+  }
+}
