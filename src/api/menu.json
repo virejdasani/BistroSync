@@ -24,7 +24,7 @@
         "image": "foodimage2"
       }
     },
-    "lunch": {
+    "mainItems": {
       "lunchitem1": {
         "id": 3,
         "name": "lunchitem1",

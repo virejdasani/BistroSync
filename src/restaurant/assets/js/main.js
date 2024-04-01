@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((response) => response.json())
     .then((data) => {
       const breakfastItemsContainer = document.getElementById("breakfastItems");
-      const lunchItemsContainer = document.getElementById("lunchItems");
+      const lunchItemsContainer = document.getElementById("mainItems");
       const dinnerItemsContainer = document.getElementById("dinnerItems");
       const drinksItemsContainer = document.getElementById("drinksItems");
 
