@@ -14,13 +14,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const renderCart = () => {
     const cartItemsContainer = document.getElementById("cartItems");
-    cartItemsContainer.innerHTML = "";
-
-    cart.forEach((item) => {
-      cartItemsContainer.innerHTML += `<div>${item.name} ${
-        item.quantity > 1 ? `x${item.quantity}` : ""
-      } - £${(item.price * item.quantity).toFixed(2)}</div>`;
-    });
+    if (cart.length === 0) {
+      cartItemsContainer.innerHTML = "<div>No items in cart</div>";
+    } else {
+      cartItemsContainer.innerHTML = "";
+      cart.forEach((item) => {
+        cartItemsContainer.innerHTML += `<div>${item.name} ${
+          item.quantity > 1 ? `x${item.quantity}` : ""
+        } - £${(item.price * item.quantity).toFixed(2)}</div>`;
+      });
+    }
 
     renderSubtotal();
   };
@@ -33,6 +36,9 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     subtotalContainer.textContent = `Subtotal: £${subtotal.toFixed(2)}`;
   };
+
+  // Call renderCart when the DOM content is loaded
+  renderCart();
 
   fetch(
     "https://raw.githubusercontent.com/virejdasani/BistroSync/main/src/api/menu.json"
