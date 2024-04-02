@@ -20,6 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  const handleCheckoutButton = () => {
+    console.log(cart);
+  };
+
   // Function to attach delete button event listeners
   const attachDeleteButtonListeners = () => {
     const deleteButtons = document.querySelectorAll(".deleteButton");
@@ -47,8 +51,18 @@ document.addEventListener("DOMContentLoaded", () => {
               item.name
             }">Remove from cart</button>
           </div>
-        `; // TODO: style the remove button
+        `;
       });
+      // Add "Pay Now" button
+      cartItemsContainer.innerHTML += `
+        <button id="payNowButton">Pay Now</button>
+      `;
+    }
+
+    // Attach event listener to "Pay Now" button
+    const payNowButton = document.getElementById("payNowButton");
+    if (payNowButton) {
+      payNowButton.addEventListener("click", handleCheckoutButton);
     }
 
     renderSubtotal();
@@ -67,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Call renderCart when the DOM content is loaded
   renderCart();
 
+  // Fetch menu data and populate items
   fetch(
     "https://raw.githubusercontent.com/virejdasani/BistroSync/main/src/api/menu.json"
   )
@@ -77,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const dinnerItemsContainer = document.getElementById("dinnerItems");
       const drinksItemsContainer = document.getElementById("drinksItems");
 
-      // function to create html for a menu item
+      // Function to create HTML for a menu item
       const createMenuItemHTML = (item) => {
         const showBlackBanner = item.idCheck || item.vegan;
         const blackBannerText = item.idCheck ? "18+" : "VEG";
@@ -102,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
       };
 
-      // populate breakfast items
+      // Populate breakfast items
       const breakfastItems = data.menu.breakfast;
       Object.keys(breakfastItems).forEach((key) => {
         const menuItem = breakfastItems[key];
@@ -110,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
         breakfastItemsContainer.innerHTML += menuItemHTML;
       });
 
-      // populate main items
+      // Populate main items
       const mainItems = data.menu.mainItems;
       Object.keys(mainItems).forEach((key) => {
         const menuItem = mainItems[key];
@@ -118,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
         mainItemsContainer.innerHTML += menuItemHTML;
       });
 
-      // populate dinner items
+      // Populate dinner items
       const dinnerItems = data.menu.dinner;
       Object.keys(dinnerItems).forEach((key) => {
         const menuItem = dinnerItems[key];
@@ -126,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
         dinnerItemsContainer.innerHTML += menuItemHTML;
       });
 
-      // populate drinks items
+      // Populate drinks items
       const drinksItems = data.menu.drinks;
       Object.keys(drinksItems).forEach((key) => {
         const menuItem = drinksItems[key];
@@ -134,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
         drinksItemsContainer.innerHTML += menuItemHTML;
       });
 
-      // add event listeners to "Add to basket" buttons
+      // Add event listeners to "Add to basket" buttons
       const addToCartButtons = document.querySelectorAll(".addToCartButton");
       addToCartButtons.forEach((button) => {
         button.addEventListener("click", () => {
