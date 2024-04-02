@@ -12,6 +12,25 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCart();
   };
 
+  const removeFromCart = (itemName) => {
+    const index = cart.findIndex((item) => item.name === itemName);
+    if (index !== -1) {
+      cart.splice(index, 1);
+      renderCart();
+    }
+  };
+
+  // Function to attach delete button event listeners
+  const attachDeleteButtonListeners = () => {
+    const deleteButtons = document.querySelectorAll(".deleteButton");
+    deleteButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const name = button.getAttribute("data-name");
+        removeFromCart(name);
+      });
+    });
+  };
+
   const renderCart = () => {
     const cartItemsContainer = document.getElementById("cartItems");
     if (cart.length === 0) {
@@ -19,13 +38,21 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       cartItemsContainer.innerHTML = "";
       cart.forEach((item) => {
-        cartItemsContainer.innerHTML += `<div>${item.name} ${
-          item.quantity > 1 ? `x${item.quantity}` : ""
-        } - £${(item.price * item.quantity).toFixed(2)}</div>`;
+        cartItemsContainer.innerHTML += `
+          <div>
+            ${item.name} ${item.quantity > 1 ? `x${item.quantity}` : ""} - £${(
+          item.price * item.quantity
+        ).toFixed(2)}
+            <button class="deleteButton" data-name="${
+              item.name
+            }">Remove from cart</button>
+          </div>
+        `; // TODO: style the remove button
       });
     }
 
     renderSubtotal();
+    attachDeleteButtonListeners(); // Attach delete button event listeners
   };
 
   const renderSubtotal = () => {
