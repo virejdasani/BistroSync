@@ -1,27 +1,65 @@
 {
   "menu": {
     "breakfast": {
-      "foodname": {
+      "fullEng_breakfast": {
         "id": 1,
-        "name": "foodname",
-        "price": 100,
-        "description": "food description",
-        "ingredients": ["ingredient1", "ingredient2"],
-        "allergens": ["allergen1", "allergen2"],
+        "name": "Full English Breakfast",
+        "price": 17.99,
+        "description": "Our special and authentic full English breakfast, consisting of bacon, fried egg, sausage, mushrooms, baked beans, toast, hash brown and grilled tomatoes.",
+        "ingredients": [
+        "bacon",
+        "pork",
+        "egg",
+        "baked beans",
+        "tomato",
+        "mushroom",
+        "beef",
+        "bread",
+        "potato"],
+        "allergens": ["gluten","dairy","mushroom"],
         "idCheck": false,
-        "vegan": true,
-        "image": "https://tinyjpg.com/images/social/website.jpg"
-      },
-      "foodname2": {
-        "id": 2,
-        "name": "foodname2",
-        "price": 120,
-        "description": "food description 2",
-        "ingredients": ["ingredient3", "ingredient4"],
-        "allergens": ["allergen3", "allergen4"],
-        "idCheck": true,
         "vegan": false,
-        "image": "foodimage2"
+        "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-592533_12-67f5d3e.jpg?quality=90&webp=true&resize=440,400"
+      },
+      "pancakes": {
+        "id": 2,
+        "name": "Pancakes",
+        "price": 6.99,
+        "description": "Delight in our fluffy and golden pancakes, served with a drizzle of maple syrup and a dollop of whipped cream, creating a perfect harmony of sweetness and indulgence.",
+        "ingredients": [
+          "flour",
+          "baking powder",
+          "sugar",
+          "milk",
+          "egg",
+          "butter",
+          "vanilla extract",
+          "maple syrup",
+          "whipped cream",
+          "berry"],
+        "allergens": ["gluten","dairy"],
+        "idCheck": false,
+        "vegan": false,
+        "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/pancakes-for-one-597b7c1.jpg?quality=90&webp=true&resize=440,400"
+      },
+      "frenchToast": {
+        "id": 3,
+        "name": "French Toast",
+        "price": 6.99,
+        "description": "Savor our French toast: thick slices of bread soaked in a sweet, cinnamon-infused egg bath, grilled to perfection, and served with a dusting of powdered sugar and a touch of maple syrup.",
+        "ingredients": [
+          "bread",
+          "egg",
+          "milk",
+          "cinnamon",
+          "vanilla",
+          "butter",
+          "sugar",
+          "maple syrup"],
+        "allergens": ["gluten","dairy"],
+        "idCheck": false,
+        "vegan": false,
+        "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/french-toast_1-5bbce73.jpg?quality=90&webp=true&resize=440,400"
       }
     },
     "mainItems": {
