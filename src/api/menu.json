@@ -63,16 +63,57 @@
       }
     },
     "mainItems": {
-      "mainitem1": {
-        "id": 3,
-        "name": "mainitem1",
-        "price": 150,
-        "description": "main description 1",
-        "ingredients": ["ingredient5", "ingredient6"],
-        "allergens": ["allergen5", "allergen6"],
+      "butterChicken_rice": {
+        "id": 4,
+        "name": "Butter Chicken with Steamed Rice",
+        "price": 9.99,
+        "description": "Enjoy our butter chicken: tender chicken in a creamy, spiced tomato sauce, served with fragrant basmati rice.",
+        "ingredients": [
+          "chicken",
+          "butter",
+          "onion",
+          "garlic",
+          "ginger",
+          "tomato",
+          "cream",
+          "yogurt",
+          "garam masala",
+          "turmeric",
+          "cumin",
+          "coriander",
+          "Pepper",
+          "basmati rice"
+      ],
+        "allergens": ["dairy","nuts"],
         "idCheck": false,
         "vegan": false,
-        "image": "mainimage1"
+        "image": "https://images.immediate.co.uk/production/volatile/sites/30/2021/02/butter-chicken-ac2ff98.jpg?quality=90&webp=true&resize=440,400"
+      },
+      "tofuNoodles": {
+        "id": 5,
+        "name": "Crispy Tofu Pad Thai Noodles",
+        "price": 9.99,
+        "description": "Enjoy our tofu pad Thai: rice noodles, tofu, and veggies stir-fried in a savory-sweet sauce, topped with lime and peanuts.",
+        "ingredients": [
+          "noodles",
+          "tofu",
+          "vegetable oil",
+          "garlic",
+          "shallots",
+          "peppers",
+          "bean sprouts",
+          "carrots",
+          "soy sauce",
+          "tamarind paste",
+          "brown sugar",
+          "lime juice",
+          "peanuts",
+          "cilantro"
+      ],
+        "allergens": ["gluten","nuts"],
+        "idCheck": false,
+        "vegan": true,
+        "image": "https://images.immediate.co.uk/production/volatile/sites/30/2023/12/Noodles-with-crispy-tofu-87e7745.jpg?quality=90&webp=true&resize=600,545"
       }
     },
     "dinner": {
