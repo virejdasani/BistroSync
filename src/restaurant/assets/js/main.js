@@ -1,7 +1,7 @@
 // render menu items from api
 document.addEventListener("DOMContentLoaded", () => {
   const cart = [];
-   
+
   const addToCart = (item) => {
     const existingItem = cart.find((cartItem) => cartItem.name === item.name);
     if (existingItem) {
@@ -185,19 +185,19 @@ function linkAction() {
 
 navLink.forEach((n) => n.addEventListener("click", linkAction));
 
-//Cart modal  
+//Cart modal
 const modal = document.querySelector(".modal");
 const trigger = document.querySelector(".trigger");
 const closeButton = document.querySelector(".close-button");
 
 function toggleModal() {
-    modal.classList.toggle("show-modal");
+  modal.classList.toggle("show-modal");
 }
 
 function windowOnClick(event) {
-    if (event.target === modal) {
-        toggleModal();
-    }
+  if (event.target === modal) {
+    toggleModal();
+  }
 }
 
 trigger.addEventListener("click", toggleModal);
