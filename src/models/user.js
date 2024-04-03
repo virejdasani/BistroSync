@@ -28,19 +28,18 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     company: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Company',
         default: null
     }
 });
 
-userSchema
-.virtual('url')
-.get(function() {
+userSchema.virtual('url').get(function() {
     return '/main/user/'+this._id;
 });
 
 userSchema.statics.validate = async function(username, password) {
+    console.log("Validating user");
     const foundUser = await this.findOne({username});
     if (!foundUser) {
         return false;

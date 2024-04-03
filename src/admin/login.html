@@ -11,6 +11,9 @@
     <nav>
         <h1>BistroSync</h1>
     </nav>
+    <div class="alert alert-danger" role="alert" style="display: none;">
+    </div>
+
     <div class="login">
         <div class="input-form">
             <h2 id="title">Login</h2>
@@ -28,5 +31,23 @@
             </form>
         </div>
     </div>
-    <script type="text/javascript" src="javascripts/login.js"></script>
+    <script type="text/javascript">
+        // if error in query string, display error message
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get('error');
+
+        switch (error) {
+            case '1':
+                document.querySelector('.alert').style.display = 'block';
+                document.querySelector('.alert').innerHTML = 'Invalid username or password';
+                break;
+            case '2':
+                document.querySelector('.alert').style.display = 'block';
+                document.querySelector('.alert').innerHTML = 'Please log in to access the page';
+                break;
+            default:
+                document.querySelector('.alert').style.display = 'none';
+                break;
+        }
+    </script>
 </body>

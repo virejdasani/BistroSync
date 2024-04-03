@@ -15,10 +15,11 @@ db.once('open', function(callback) {
    console.log("Database Connection succeeded");
 })
 
-
 app.use(express.static("src"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+//app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
   res.redirect("/restaurant");
@@ -27,6 +28,11 @@ app.get("/", (req, res) => {
 app.use("/restaurant", restaurantRouter);
 
 app.use("/restaurant/admin", adminRouter);
+
+app.use((err, req, res, next) => {
+  console.log("ERROR: " + err.message);
+  res.status(500).send("Error: " + err.message);
+});
 
 app.listen(port, () => {
   console.log("Started server");
