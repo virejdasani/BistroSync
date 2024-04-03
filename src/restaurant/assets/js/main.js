@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
               item.name
             }" data-price="${
           item.price
-        }">Add to basket<i class='bx bx-right-arrow button-icon'></i></button>
+        }">Add to Cart<i class='bx bx-right-arrow button-icon'></i></button>
           </article>
         `;
       };
@@ -184,3 +184,22 @@ function linkAction() {
 }
 
 navLink.forEach((n) => n.addEventListener("click", linkAction));
+
+//Cart modal
+const modal = document.querySelector(".modal");
+const trigger = document.querySelector(".trigger");
+const closeButton = document.querySelector(".close-button");
+
+function toggleModal() {
+  modal.classList.toggle("show-modal");
+}
+
+function windowOnClick(event) {
+  if (event.target === modal) {
+    toggleModal();
+  }
+}
+
+trigger.addEventListener("click", toggleModal);
+closeButton.addEventListener("click", toggleModal);
+window.addEventListener("click", windowOnClick);
