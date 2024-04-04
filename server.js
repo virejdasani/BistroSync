@@ -1,3 +1,5 @@
+const session = require('express-session');
+
 const express = require("express");
 const app = express();
 const port = 3000;
@@ -18,6 +20,7 @@ db.once('open', function(callback) {
 app.use(express.static("src"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(session({ secret: 'Secret_Key', resave: false, saveUninitialized: false }));
 
 //app.set("view engine", "ejs");
 
