@@ -21,10 +21,13 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const handleCheckoutButton = () => {
-    console.log(cart);
+    const tableNumber = document.getElementById("tableNumber").value;
+    console.log("Table Number:", tableNumber);
+    console.log("Cart Items:", cart);
+    // add this to mongodb
   };
 
-  // Function to attach delete button event listeners
+  // attach delete button event listeners
   const attachDeleteButtonListeners = () => {
     const deleteButtons = document.querySelectorAll(".deleteButton");
     deleteButtons.forEach((button) => {
@@ -53,20 +56,23 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         `;
       });
-      // Add "Pay Now" button
+      // add pay now button
       cartItemsContainer.innerHTML += `
+        <div>
+          Table Number: <input type="text" id="tableNumber">
+        </div>
         <button id="payNowButton">Pay Now</button>
       `;
     }
 
-    // Attach event listener to "Pay Now" button
+    // Attach event listener to pay now button
     const payNowButton = document.getElementById("payNowButton");
     if (payNowButton) {
       payNowButton.addEventListener("click", handleCheckoutButton);
     }
 
     renderSubtotal();
-    attachDeleteButtonListeners(); // Attach delete button event listeners
+    attachDeleteButtonListeners(); // attach delete button event listeners
   };
 
   const renderSubtotal = () => {
@@ -78,10 +84,10 @@ document.addEventListener("DOMContentLoaded", () => {
     subtotalContainer.textContent = `Subtotal: £${subtotal.toFixed(2)}`;
   };
 
-  // Call renderCart when the DOM content is loaded
+  // call when the DOM content is loaded
   renderCart();
 
-  // Fetch menu data and populate items
+  // fetch menu data
   fetch(
     "https://raw.githubusercontent.com/virejdasani/BistroSync/main/src/api/menu.json"
   )
@@ -92,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const dinnerItemsContainer = document.getElementById("dinnerItems");
       const drinksItemsContainer = document.getElementById("drinksItems");
 
-      // Function to create HTML for a menu item
+      // function to create HTML for a menu item
       const createMenuItemHTML = (item) => {
         const showBlackBanner = item.idCheck || item.vegan;
         const blackBannerText = item.idCheck ? "18+" : "VEG";
@@ -117,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
       };
 
-      // Populate breakfast items
+      // populate breakfast items
       const breakfastItems = data.menu.breakfast;
       Object.keys(breakfastItems).forEach((key) => {
         const menuItem = breakfastItems[key];
@@ -125,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
         breakfastItemsContainer.innerHTML += menuItemHTML;
       });
 
-      // Populate main items
+      // populate main items
       const mainItems = data.menu.mainItems;
       Object.keys(mainItems).forEach((key) => {
         const menuItem = mainItems[key];
@@ -133,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
         mainItemsContainer.innerHTML += menuItemHTML;
       });
 
-      // Populate dinner items
+      // populate dinner items
       const dinnerItems = data.menu.dinner;
       Object.keys(dinnerItems).forEach((key) => {
         const menuItem = dinnerItems[key];
@@ -141,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
         dinnerItemsContainer.innerHTML += menuItemHTML;
       });
 
-      // Populate drinks items
+      // populate drinks items
       const drinksItems = data.menu.drinks;
       Object.keys(drinksItems).forEach((key) => {
         const menuItem = drinksItems[key];
@@ -149,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
         drinksItemsContainer.innerHTML += menuItemHTML;
       });
 
-      // Add event listeners to "Add to basket" buttons
+      // add event listeners to add to basket buttons
       const addToCartButtons = document.querySelectorAll(".addToCartButton");
       addToCartButtons.forEach((button) => {
         button.addEventListener("click", () => {
