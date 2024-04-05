@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
+
+body {
+  font-family: 'Barlow', sans-serif !important;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+/* responsive sidebar */
+@media screen and (max-width: 767px) {
+
+  .sidebar {
+    max-width: 18rem !important;
+    transform: translateX(-100%) !important;
+    transition: transform 0.4s ease-out !important;
+  }
+
+  .sidebar.active {
+    transform: translateX(0) !important;
+  }
+
+}
