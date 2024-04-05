@@ -13,24 +13,24 @@ const checkoutSchema = new mongoose.Schema({
   tableNumber: Number,
 });
 
-userSchema.virtual("url").get(function () {
-  return "/main/user/" + this._id;
-});
+// userSchema.virtual("url").get(function () {
+//   return "/main/user/" + this._id;
+// });
 
-userSchema.statics.validate = async function (username, password) {
-  console.log("Validating user");
-  const foundUser = await this.findOne({ username });
-  if (!foundUser) {
-    return false;
-  } else {
-    const isValid = await bcrypt.compare(password, foundUser.password);
-    return isValid ? foundUser : false;
-  }
-};
+// userSchema.statics.validate = async function (username, password) {
+//   console.log("Validating user");
+//   const foundUser = await this.findOne({ username });
+//   if (!foundUser) {
+//     return false;
+//   } else {
+//     const isValid = await bcrypt.compare(password, foundUser.password);
+//     return isValid ? foundUser : false;
+//   }
+// };
 
-userSchema.pre("save", async function (next) {
-  this.password = await bcrypt.hash(this.password, 12);
-  next();
-});
+// userSchema.pre("save", async function (next) {
+//   this.password = await bcrypt.hash(this.password, 12);
+//   next();
+// });
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("Checkout", userSchema);
