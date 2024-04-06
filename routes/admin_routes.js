@@ -6,8 +6,12 @@ const User = require('../src/models/user.js');
 
 router.use(express.static('src/admin'));
 
-router.get('/', function(req, res) {
-    res.redirect('login');
+router.use((req, res, next) => {
+    if (req.path !== '/login') {
+        return !req.session.user_id ? res.redirect('/restaurant/admin/login') : next();
+    } else {
+        next();
+    }
 });
 
 router.route('/login')
@@ -36,12 +40,17 @@ router.route('/login')
 
 router.route('/dashboard')
     .get(function(req, res) {
-        // Check if user is logged in
-        if (!req.session.user_id) {
-            res.redirect('/restaurant/admin/login');
-        }
         res.sendFile(path.resolve("src/admin/dashboard.html"));
     });
+
+router.route('/logout')
+    .get(function(req, res) {
+        req.session.user_id = null;
+        req.session.username = null;
+        res.redirect('/restaurant/admin/login');
+    });
+
+router.route('/')
 
 function validate(username, password) {
     const regex = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?~]/; // Temporary validation
