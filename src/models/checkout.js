@@ -10,6 +10,10 @@ const checkoutSchema = new mongoose.Schema({
   ],
   totalAmount: Number,
   tableNumber: Number,
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 checkoutSchema.virtual("url").get(function () {
