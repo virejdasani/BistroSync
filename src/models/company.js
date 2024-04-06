@@ -24,7 +24,7 @@ const companySchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now
-    },
+    }
 });
 
 const Company = mongoose.model('Company', companySchema);

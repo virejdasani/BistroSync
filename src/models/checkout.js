@@ -13,7 +13,7 @@ const checkoutSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-  },
+  }
 });
 
 checkoutSchema.virtual("url").get(function () {
