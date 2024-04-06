@@ -25,7 +25,7 @@
         "id": 2,
         "name": "Pancakes",
         "price": 6.99,
-        "description": "Delight in our fluffy and golden pancakes, served with a drizzle of maple syrup and a dollop of whipped cream, creating a perfect harmony of sweetness and indulgence.",
+        "description": "Delight in fluffy pancakes served with a drizzle of maple syrup and a sprinkle of powdered sugar.",
         "ingredients": [
           "flour",
           "baking powder",
@@ -46,7 +46,7 @@
         "id": 3,
         "name": "French Toast",
         "price": 6.99,
-        "description": "Savor our French toast: thick slices of bread soaked in a sweet, cinnamon-infused egg bath, grilled to perfection, and served with a dusting of powdered sugar and a touch of maple syrup.",
+        "description": "Savor our French toast: golden slices dipped in a sweet egg batter and grilled to perfection.",
         "ingredients": [
           "bread",
           "egg",
@@ -61,6 +61,7 @@
         "vegan": false,
         "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/french-toast_1-5bbce73.jpg?quality=90&webp=true&resize=440,400"
       }
+
     },
     "mainItems": {
       "butterChicken_rice": {
@@ -114,33 +115,145 @@
         "idCheck": false,
         "vegan": true,
         "image": "https://images.immediate.co.uk/production/volatile/sites/30/2023/12/Noodles-with-crispy-tofu-87e7745.jpg?quality=90&webp=true&resize=600,545"
+      },
+
+      "fishCurry_rice": {
+        "id": 6,
+        "name": "Butter Chicken with Steamed Rice",
+        "price": 9.99,
+        "description": "Indulge in our coconut fish curry, a tantalizing blend of tender white fish simmered in creamy coconut milk infused with aromatic spices.",
+        "ingredients": [
+          "cod fish",
+          "coconut milk",
+          "onion",
+          "garlic",
+          "ginger",
+          "thai curry paste",
+          "tomatoes",
+          "fish sauce",
+          "lemon",
+          "brown sugar",
+          "salt",
+          "oil",
+          "cilantro",
+          "basmati rice"
+      ],
+        "allergens": ["shellfish","nuts","coconut"],
+        "idCheck": false,
+        "vegan": false,
+        "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/coconut-fish-curry-1823a09.jpg?quality=90&webp=true&resize=440,400"
       }
     },
-    "dinner": {
-      "dinneritem1": {
-        "id": 4,
-        "name": "dinneritem1",
-        "price": 200,
-        "description": "dinner description 1",
-        "ingredients": ["ingredient7", "ingredient8"],
-        "allergens": ["allergen7", "allergen8"],
-        "idCheck": true,
+    "desserts": {
+      "ny_cheesecake": {
+        "id": 7,
+        "name": "New York Cheesecake",
+        "price": 3.99,
+        "description": "Savor the creamy richness of our New York cheesecake, perfectly crafted to melt in your mouth with every bite.",
+        "ingredients": [
+          "cream cheese",
+          "sugar",
+          "egg",
+          "sour cream",
+          "vanilla extract",
+          "flour",
+          "butter",
+          "salt"
+      ],
+        "allergens": ["dairy", "eggs","gluten"],
+        "idCheck": false,
         "vegan": false,
-        "image": "dinnerimage1"
+        "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-1001487_11-f54704c.jpg?quality=90&webp=true&resize=440,400"
+      },
+      "tiramisu": {
+        "id": 8,
+        "name": "Italian Tiramisu",
+        "price": 3.99,
+        "description": "Delight in our exquisite tiramisu, layers of delicate ladyfingers soaked in espresso and liqueur, nestled between luscious mascarpone cheese and dusted with cocoa powder.",
+        "ingredients": [
+          "ladyfinger",
+          "espresso",
+          "mascarpone cheese",
+          "egg",
+          "sugar",
+          "cocoa powder",
+          "heavy cream"
+      ],
+        "allergens": ["dairy", "gluten","eggs"],
+        "idCheck": false,
+        "vegan": false,
+        "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/irish-cream-tiramisu-9ab7395.jpg?quality=90&webp=true&resize=440,400"
+      },
+      "veg_choc_cake": {
+        "id": 9,
+        "name": "Vegan Chocolate Cake",
+        "price": 3.99,
+        "description": "dinner description 1",
+        "ingredients": [
+          "flour",
+          "cocoa powder",
+          "Granulated sugar",
+          "baking powder",
+          "baking soda",
+          "salt",
+          "oil",
+          "applesauce",
+          "vanilla extract",
+          "almond milk",
+          "apple cider vinegar",
+          "vegan chocolate chips"
+      ],
+        "allergens": ["gluten", "nuts","soy"],
+        "idCheck": false,
+        "vegan": false,
+        "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/vegan-choc-cake-1905166.jpg?quality=90&webp=true&resize=440,400"
       }
     },
     "drinks": {
-      "drink1": {
-        "id": 5,
-        "name": "drink1",
-        "price": 50,
-        "description": "drink description 1",
-        "ingredients": ["ingredient9", "ingredient10"],
-        "allergens": ["allergen9", "allergen10"],
+      "coffee": {
+        "id": 10,
+        "name": "Choice of Coffee",
+        "price": 4.99,
+        "description": "Indulge in our selection of expertly roasted coffees, each offering a unique flavor profile to suit every preference (Vegan Options Available)",
+        "ingredients": ["coffee","sugar","milk"],
+        "allergens": ["dairy"],
         "idCheck": false,
+        "vegan": true,
+        "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/latte-e2a66d3.jpg?quality=90&webp=true&resize=440,400"
+      },
+      "passsion_fruit_martini": {
+        "id": 11,
+        "name": "Passion Fruit Martini",
+        "price": 4.99,
+        "description": "Savor our passion fruit martini: a blend of vodka, tangy passion fruit puree, and citrus, offering an exotic flavor experience.",
+        "ingredients": [
+          "vodka",
+          "passion fruit puree",
+          "lemon",
+          "simple syrup",
+          "passion fruit"
+      ],
+        "allergens": ["alchohol","citrus"],
+        "idCheck": true,
         "vegan": false,
-        "image": "drinkimage1"
-      }
+        "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/passionfruit-martini-8185753.jpg?quality=90&webp=true&resize=440,400"
+      },
+      "gin_and_tonic": {
+        "id": 12,
+        "name": "Gin & Tonic",
+        "price": 4.99,
+        "description": "Savor our classic gin and tonic, crafted with premium gin, tonic water, and a hint of lime for a refreshing twist.",
+        "ingredients": [
+          "gin",
+          "tonic water",
+          "lemon"
+      ],
+        "allergens": ["alchohol","citrus"],
+        "idCheck": true,
+        "vegan": false,
+        "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-694461_11-52a3ef7.jpg?quality=90&webp=true&resize=440,400"
+
     }
   }
+}
 }
