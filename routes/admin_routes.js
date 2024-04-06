@@ -50,8 +50,6 @@ router.route('/logout')
         res.redirect('/restaurant/admin/login');
     });
 
-router.route('/')
-
 function validate(username, password) {
     const regex = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?~]/; // Temporary validation
     if (username && password) {
