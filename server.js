@@ -22,7 +22,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(session({ secret: 'Secret_Key', resave: false, saveUninitialized: false }));
 
-//app.set("view engine", "ejs");
+app.use((err, req, res, next) => {
+  console.log("ERROR: " + err.message);
+  res.status(500).send("Error: " + err.message);
+});
 
 app.get("/", (req, res) => {
   res.redirect("/restaurant");
@@ -32,10 +35,6 @@ app.use("/restaurant", restaurantRouter);
 
 app.use("/restaurant/admin", adminRouter);
 
-app.use((err, req, res, next) => {
-  console.log("ERROR: " + err.message);
-  res.status(500).send("Error: " + err.message);
-});
 
 app.listen(port, () => {
   console.log("Started server");
