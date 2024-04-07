@@ -4,8 +4,8 @@
       "fullEng_breakfast": {
         "id": 1,
         "name": "Full English Breakfast",
-        "price": 17.99,
-        "description": "Experience our authentic full English breakfast: bacon, egg, sausage, mushrooms, beans, toast, hash brown, and grilled tomatoes.",
+        "price": 14.99,
+        "description": "Our authentic full English breakfast: bacon, egg, sausage, mushrooms, beans, toast, hash brown, and grilled tomatoes.",
         "ingredients": [
           "bacon",
           "pork",
@@ -170,9 +170,9 @@
       },
       "tiramisu": {
         "id": 8,
-        "name": "Italian Tiramisu",
+        "name": "Classic Italian Tiramisu",
         "price": 3.99,
-        "description": "Savor our exquisite tiramisu: ladyfingers soaked in espresso, layered with mascarpone cheese, and dusted with cocoa powder.",
+        "description": "Savor our exquisite tiramisu: ladyfingers soaked in espresso, layered with mascarpone cheese and cocoa powder.",
         "ingredients": [
           "ladyfinger",
           "espresso",
@@ -217,7 +217,7 @@
         "id": 10,
         "name": "Choice of Coffee",
         "price": 4.99,
-        "description": "Savor our diverse coffee selection, catering to all tastes with unique flavor profiles. (Vegan options available)",
+        "description": "Enjoy our diverse coffee selection, catering to all tastes with unique flavor profiles. (Vegan options available)",
         "ingredients": ["coffee", "sugar", "milk"],
         "allergens": ["dairy"],
         "idCheck": false,
@@ -228,7 +228,7 @@
         "id": 11,
         "name": "Passion Fruit Martini",
         "price": 7.99,
-        "description": "Savor our passion fruit martini: a blend of vodka, tangy passion fruit puree, and citrus, offering an exotic flavor experience.",
+        "description": "Indulge in our passion fruit martini: vodka, tangy puree, with refreshing citrus notes.",
         "ingredients": [
           "vodka",
           "passion fruit puree",
