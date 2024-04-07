@@ -22,9 +22,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const handleCheckoutButton = () => {
     const tableNumber = document.getElementById("tableNumber").value;
-    console.log("Table Number:", tableNumber);
-    console.log("Cart Items:", cart);
     // add this to mongodb
+    const restaurant = window.location.pathname.split("/")[1];
+    fetch(`/${restaurant}/checkout`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ items: cart, tableNumber }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === "ok") {
+          alert("Checkout successful");
+          cart.length = 0; // clear cart
+          renderCart();
+          toggleModal();
+        }
+      })
+      .catch((error) => console.error("Error checking out:", error));
   };
 
   // attach delete button event listeners
