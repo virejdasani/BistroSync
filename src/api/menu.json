@@ -5,7 +5,7 @@
         "id": 1,
         "name": "Full English Breakfast",
         "price": 14.99,
-        "description": "Our authentic full English breakfast: bacon, egg, sausage, mushrooms, beans, toast, hash brown, and grilled tomatoes.",
+        "description": "Our authentic full English breakfast: bacon, egg, sausage, mushrooms, beans, toast, hashbrown, and tomatoes.",
         "ingredients": [
           "bacon",
           "pork",
@@ -150,7 +150,7 @@
     "desserts": {
       "ny_cheesecake": {
         "id": 7,
-        "name": "New York Cheesecake",
+        "name": "New York Cheesecake Slice",
         "price": 3.99,
         "description": "Savor the creamy richness of our New York cheesecake, perfectly crafted to melt in your mouth with every bite.",
         "ingredients": [
@@ -228,7 +228,7 @@
         "id": 11,
         "name": "Passion Fruit Martini",
         "price": 7.99,
-        "description": "Indulge in our passion fruit martini: vodka, tangy puree, with refreshing citrus notes.",
+        "description": "Indulge in our passion fruit martini: Absolut vodka, tangy puree, with refreshing citrus notes.",
         "ingredients": [
           "vodka",
           "passion fruit puree",
