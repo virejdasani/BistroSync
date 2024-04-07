@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
   res.sendFile(path.resolve("src/restaurant/index.html"));
 });
 
-router.post("/checkout", (req, res) => {
+router.post("/checkout", async (req, res) => {
   const Checkout = require("../src/models/checkout");
 
   // Save checkout to database
@@ -18,13 +18,12 @@ router.post("/checkout", (req, res) => {
   var totalAmount = items.reduce((total, item) => total + item.price * item.quantity, 0);
   var company = req.company;
 
-  const checkout = new Checkout({
+  await Checkout.create({
     items,
     totalAmount,
     tableNumber,
-    company,
+    company
   });
-  checkout.save();
 
   res.json({ status: "ok" });
 });
