@@ -208,7 +208,7 @@
         ],
         "allergens": ["gluten", "nuts", "soy"],
         "idCheck": false,
-        "vegan": false,
+        "vegan": true,
         "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/vegan-choc-cake-1905166.jpg?quality=90&webp=true&resize=440,400"
       }
     },
