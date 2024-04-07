@@ -16,10 +16,10 @@
   <div class="col-md-3 col-lg-2 px-0 position-fixed h-100 bg-white shadow-sm sidebar" id="sidebar">
     <h1 class="bi bi-bootstrap text-primary d-flex my-4 justify-content-center"></h1>
     <div class="list-group rounded-0">
-      <a href="#" class="list-group-item list-group-item-action active border-0 d-flex align-items-center">
+      <a href="#" class="list-group-item list-group-item-action active border-0 d-flex align-items-center" id="dashboard">
         <span class="ml-2">Dashboard</span>
       </a>
-      <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center">
+      <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center" id="pastOrders">
         <span class="ml-2">Past Orders</span>
       </a>
     </div>
@@ -31,10 +31,10 @@
     <main class="p-4 min-vh-100">
       <div class="jumbotron jumbotron-fluid rounded bg-white border-0 shadow-sm px-4">
         <div class="container">
-          <h1 class="display-4 mb-2 text-primary">Upcoming Orders</h1>
+          <h1 class="display-4 mb-2 text-primary" id="ordersType">Upcoming Orders</h1>
           <p class="lead text-muted orders-display">
             <!-- TODO ORDERS GET DISPLAYED HERE FROM BACKEND -->
-            <table class="table table-striped" id="pendingOrders">
+            <table class="table table-striped" id="ordersTable">
               <thead>
                 <tr>
                   <th scope="col">Order ID</th>
@@ -45,7 +45,7 @@
                   <th scope="col">Action</th>
                 </tr>
               </thead>
-              <tbody id="pendingOrdersBody">
+              <tbody id="ordersTableBody">
               </tbody>
           </p>
         </div>
