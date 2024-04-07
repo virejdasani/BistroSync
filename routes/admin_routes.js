@@ -53,6 +53,13 @@ router.get('/orders', async function(req, res) {
     return res.json(pendingOrders);
 });
 
+router.get('/past_orders', async function(req, res) {
+    const Checkout = require('../src/models/checkout');
+    const company = req.company;
+    const pastOrders = await Checkout.find({company, status: 'completed'}).populate('company');
+    return res.json(pastOrders);
+});
+
 function validate(username, password) {
     const regex = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?~]/; // Temporary validation
     if (username && password) {
