@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((data) => {
       const breakfastItemsContainer = document.getElementById("breakfastItems");
       const mainItemsContainer = document.getElementById("mainItems");
-      const dinnerItemsContainer = document.getElementById("dinnerItems");
+      const dessertsItemsContainer = document.getElementById("dessertsItems");
       const drinksItemsContainer = document.getElementById("drinksItems");
 
       // function to create HTML for a menu item
@@ -139,12 +139,12 @@ document.addEventListener("DOMContentLoaded", () => {
         mainItemsContainer.innerHTML += menuItemHTML;
       });
 
-      // populate dinner items
-      const dinnerItems = data.menu.dinner;
-      Object.keys(dinnerItems).forEach((key) => {
-        const menuItem = dinnerItems[key];
+      // populate desserts items
+      const dessertsItems = data.menu.desserts;
+      Object.keys(dessertsItems).forEach((key) => {
+        const menuItem = dessertsItems[key];
         const menuItemHTML = createMenuItemHTML(menuItem);
-        dinnerItemsContainer.innerHTML += menuItemHTML;
+        dessertsItemsContainer.innerHTML += menuItemHTML;
       });
 
       // populate drinks items

@@ -7,16 +7,17 @@
         "price": 17.99,
         "description": "Our special and authentic full English breakfast, consisting of bacon, fried egg, sausage, mushrooms, baked beans, toast, hash brown and grilled tomatoes.",
         "ingredients": [
-        "bacon",
-        "pork",
-        "egg",
-        "baked beans",
-        "tomato",
-        "mushroom",
-        "beef",
-        "bread",
-        "potato"],
-        "allergens": ["gluten","dairy","mushroom"],
+          "bacon",
+          "pork",
+          "egg",
+          "baked beans",
+          "tomato",
+          "mushroom",
+          "beef",
+          "bread",
+          "potato"
+        ],
+        "allergens": ["gluten", "dairy", "mushroom"],
         "idCheck": false,
         "vegan": false,
         "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-592533_12-67f5d3e.jpg?quality=90&webp=true&resize=440,400"
@@ -36,8 +37,9 @@
           "vanilla extract",
           "maple syrup",
           "whipped cream",
-          "berry"],
-        "allergens": ["gluten","dairy"],
+          "berry"
+        ],
+        "allergens": ["gluten", "dairy"],
         "idCheck": false,
         "vegan": false,
         "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/pancakes-for-one-597b7c1.jpg?quality=90&webp=true&resize=440,400"
@@ -55,8 +57,9 @@
           "vanilla",
           "butter",
           "sugar",
-          "maple syrup"],
-        "allergens": ["gluten","dairy"],
+          "maple syrup"
+        ],
+        "allergens": ["gluten", "dairy"],
         "idCheck": false,
         "vegan": false,
         "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/french-toast_1-5bbce73.jpg?quality=90&webp=true&resize=440,400"
@@ -84,8 +87,8 @@
           "coriander",
           "Pepper",
           "basmati rice"
-      ],
-        "allergens": ["dairy","nuts"],
+        ],
+        "allergens": ["dairy", "nuts"],
         "idCheck": false,
         "vegan": false,
         "image": "https://images.immediate.co.uk/production/volatile/sites/30/2021/02/butter-chicken-ac2ff98.jpg?quality=90&webp=true&resize=440,400"
@@ -110,8 +113,8 @@
           "lime juice",
           "peanuts",
           "cilantro"
-      ],
-        "allergens": ["gluten","nuts"],
+        ],
+        "allergens": ["gluten", "nuts"],
         "idCheck": false,
         "vegan": true,
         "image": "https://images.immediate.co.uk/production/volatile/sites/30/2023/12/Noodles-with-crispy-tofu-87e7745.jpg?quality=90&webp=true&resize=600,545"
@@ -137,8 +140,8 @@
           "oil",
           "cilantro",
           "basmati rice"
-      ],
-        "allergens": ["shellfish","nuts","coconut"],
+        ],
+        "allergens": ["shellfish", "nuts", "coconut"],
         "idCheck": false,
         "vegan": false,
         "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/coconut-fish-curry-1823a09.jpg?quality=90&webp=true&resize=440,400"
@@ -159,8 +162,8 @@
           "flour",
           "butter",
           "salt"
-      ],
-        "allergens": ["dairy", "eggs","gluten"],
+        ],
+        "allergens": ["dairy", "eggs", "gluten"],
         "idCheck": false,
         "vegan": false,
         "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-1001487_11-f54704c.jpg?quality=90&webp=true&resize=440,400"
@@ -178,8 +181,8 @@
           "sugar",
           "cocoa powder",
           "heavy cream"
-      ],
-        "allergens": ["dairy", "gluten","eggs"],
+        ],
+        "allergens": ["dairy", "gluten", "eggs"],
         "idCheck": false,
         "vegan": false,
         "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/irish-cream-tiramisu-9ab7395.jpg?quality=90&webp=true&resize=440,400"
@@ -202,8 +205,8 @@
           "almond milk",
           "apple cider vinegar",
           "vegan chocolate chips"
-      ],
-        "allergens": ["gluten", "nuts","soy"],
+        ],
+        "allergens": ["gluten", "nuts", "soy"],
         "idCheck": false,
         "vegan": false,
         "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/vegan-choc-cake-1905166.jpg?quality=90&webp=true&resize=440,400"
@@ -215,7 +218,7 @@
         "name": "Choice of Coffee",
         "price": 4.99,
         "description": "Indulge in our selection of expertly roasted coffees, each offering a unique flavor profile to suit every preference (Vegan Options Available)",
-        "ingredients": ["coffee","sugar","milk"],
+        "ingredients": ["coffee", "sugar", "milk"],
         "allergens": ["dairy"],
         "idCheck": false,
         "vegan": true,
@@ -232,8 +235,8 @@
           "lemon",
           "simple syrup",
           "passion fruit"
-      ],
-        "allergens": ["alchohol","citrus"],
+        ],
+        "allergens": ["alchohol", "citrus"],
         "idCheck": true,
         "vegan": false,
         "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/passionfruit-martini-8185753.jpg?quality=90&webp=true&resize=440,400"
@@ -247,13 +250,13 @@
           "gin",
           "tonic water",
           "lemon"
-      ],
-        "allergens": ["alchohol","citrus"],
+        ],
+        "allergens": ["alchohol", "citrus"],
         "idCheck": true,
         "vegan": false,
         "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-694461_11-52a3ef7.jpg?quality=90&webp=true&resize=440,400"
 
+      }
     }
   }
-}
 }
