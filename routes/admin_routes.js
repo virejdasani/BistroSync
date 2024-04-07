@@ -45,6 +45,13 @@ router.route('/logout')
         res.redirect('/restaurant/admin/login');
     });
 
+router.get('/orders', async function(req, res) {
+    const Checkout = require('../src/models/checkout');
+    const company = req.company;
+    const pendingOrders = await Checkout.find({company, status: 'pending'}).populate('company');
+    return res.json(pendingOrders);
+});
+
 function validate(username, password) {
     const regex = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?~]/; // Temporary validation
     if (username && password) {
