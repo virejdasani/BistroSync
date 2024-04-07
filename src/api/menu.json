@@ -5,7 +5,7 @@
         "id": 1,
         "name": "Full English Breakfast",
         "price": 17.99,
-        "description": "Our special and authentic full English breakfast, consisting of bacon, fried egg, sausage, mushrooms, baked beans, toast, hash brown and grilled tomatoes.",
+        "description": "Experience our authentic full English breakfast: bacon, egg, sausage, mushrooms, beans, toast, hash brown, and grilled tomatoes.",
         "ingredients": [
           "bacon",
           "pork",
@@ -48,7 +48,7 @@
         "id": 3,
         "name": "French Toast",
         "price": 6.99,
-        "description": "Savor our French toast: golden slices dipped in a sweet egg batter and grilled to perfection.",
+        "description": "Enjoy classic French toast: golden slices dipped in egg batter, grilled to perfection for a delightful breakfast.",
         "ingredients": [
           "bread",
           "egg",
@@ -124,7 +124,7 @@
         "id": 6,
         "name": "Coconut Fish Curry with Rice",
         "price": 9.99,
-        "description": "Indulge in our coconut fish curry, a tantalizing blend of tender white fish simmered in creamy coconut milk infused with aromatic spices.",
+        "description": "Savor our coconut fish curry: tender white fish in creamy coconut milk, infused with aromatic spices.",
         "ingredients": [
           "cod fish",
           "coconut milk",
@@ -172,7 +172,7 @@
         "id": 8,
         "name": "Italian Tiramisu",
         "price": 3.99,
-        "description": "Delight in our exquisite tiramisu, layers of delicate ladyfingers soaked in espresso and liqueur, nestled between luscious mascarpone cheese and dusted with cocoa powder.",
+        "description": "Savor our exquisite tiramisu: ladyfingers soaked in espresso, layered with mascarpone cheese, and dusted with cocoa powder.",
         "ingredients": [
           "ladyfinger",
           "espresso",
@@ -191,7 +191,7 @@
         "id": 9,
         "name": "Vegan Chocolate Cake",
         "price": 3.99,
-        "description": "dinner description 1",
+        "description": "Savor our vegan chocolate cake, rich with cocoa goodness and topped with luscious dairy-free frosting.",
         "ingredients": [
           "flour",
           "cocoa powder",
@@ -217,7 +217,7 @@
         "id": 10,
         "name": "Choice of Coffee",
         "price": 4.99,
-        "description": "Indulge in our selection of expertly roasted coffees, each offering a unique flavor profile to suit every preference (Vegan Options Available)",
+        "description": "Savor our diverse coffee selection, catering to all tastes with unique flavor profiles. (Vegan options available)",
         "ingredients": ["coffee", "sugar", "milk"],
         "allergens": ["dairy"],
         "idCheck": false,
@@ -227,7 +227,7 @@
       "passsion_fruit_martini": {
         "id": 11,
         "name": "Passion Fruit Martini",
-        "price": 4.99,
+        "price": 7.99,
         "description": "Savor our passion fruit martini: a blend of vodka, tangy passion fruit puree, and citrus, offering an exotic flavor experience.",
         "ingredients": [
           "vodka",
@@ -244,7 +244,7 @@
       "gin_and_tonic": {
         "id": 12,
         "name": "Gin & Tonic",
-        "price": 4.99,
+        "price": 7.99,
         "description": "Savor our classic gin and tonic, crafted with premium gin, tonic water, and a hint of lime for a refreshing twist.",
         "ingredients": [
           "gin",
