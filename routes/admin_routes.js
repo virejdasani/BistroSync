@@ -17,7 +17,6 @@ router.route('/login')
             try {
                 const user = await User.validate(username, password); // Validates username and password form model
                 if (user) {
-                    console.log("User validated");
                     req.session.user_id = user._id;
                     req.session.username = user.username;
                     res.redirect('dashboard');
@@ -40,9 +39,11 @@ router.route('/dashboard')
 
 router.route('/logout')
     .get(function(req, res) {
+        const company = req.company;
         req.session.user_id = null;
         req.session.username = null;
-        res.redirect('/restaurant/admin/login');
+        req.company = null;
+        res.redirect(`/${company}/admin/login`);
     });
 
 router.get('/orders', async function(req, res) {
