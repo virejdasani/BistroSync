@@ -1,5 +1,9 @@
 // render menu items from api
 document.addEventListener("DOMContentLoaded", () => {
+
+  const restaurant = window.location.pathname.split("/")[1];
+  document.getElementById("restaurantName").textContent = restaurant;
+
   const cart = [];
 
   const addToCart = (item) => {
