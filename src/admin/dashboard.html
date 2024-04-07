@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/dashboard.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script src="js/main.js"></script>
 </head>
 
 <body>
@@ -33,30 +34,18 @@
           <h1 class="display-4 mb-2 text-primary">Upcoming Orders</h1>
           <p class="lead text-muted orders-display">
             <!-- TODO ORDERS GET DISPLAYED HERE FROM BACKEND -->
-            <table class="table table-striped">
+            <table class="table table-striped" id="pendingOrders">
               <thead>
                 <tr>
+                  <th scope="col">Order ID</th>
                   <th scope="col">Table</th>
                   <th scope="col">Food Item</th>
                   <th scope="col">Quantity</th>
                   <th scope="col">Price</th>
+                  <th scope="col">Action</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Food Item 1</td>
-                  <td>2</td>
-                  <td>200</td>
-                  <td><button class="btn btn-primary btn-sm">Completed</button></td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Food Item 2</td>
-                  <td>3</td>
-                  <td>300</td>
-                  <td><button class="btn btn-primary btn-sm">Completed</button></td>
-                </tr>
+              <tbody id="pendingOrdersBody">
               </tbody>
           </p>
         </div>
@@ -76,5 +65,8 @@
     </main>
   </div>
 </body>
+
+<style>
+</style>
 
 </html>
