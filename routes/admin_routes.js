@@ -6,20 +6,13 @@ const User = require('../src/models/user.js');
 
 router.use(express.static('src/admin'));
 
-router.use((req, res, next) => {
-    if (req.path !== '/login') {
-        return !req.session.user_id ? res.redirect('/restaurant/admin/login') : next();
-    } else {
-        next();
-    }
-});
-
 router.route('/login')
     .get(function(req, res) {
         res.sendFile(path.resolve("src/admin/login.html"));
     })
     .post(async function(req, res) {
         const {username, password} = req.body;
+        const restaurant = req.company;
         if (validate(username, password)) {
             try {
                 const user = await User.validate(username, password); // Validates username and password form model
@@ -27,14 +20,16 @@ router.route('/login')
                     console.log("User validated");
                     req.session.user_id = user._id;
                     req.session.username = user.username;
-                    res.redirect('/restaurant/admin/dashboard');
+                    res.redirect('dashboard');
                 } else {
                     let querystring = `?username=${username}&error=1`;
-                    res.redirect('/restaurant/admin/login' + querystring);
+                    res.redirect('login' + querystring);
                 }
             } catch (err) {
-                res.redirect('/restaurant/admin/login?error=2');
+                res.redirect('login?error=2');
             }
+        } else {
+            res.redirect('login?error=1');
         }
     });
 
