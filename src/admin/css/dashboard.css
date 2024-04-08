@@ -8,6 +8,20 @@ a:hover {
   text-decoration: none !important;
 }
 
+.orders-table {
+  max-height: 40rem;
+  overflow-y: auto;
+}
+
+/* make table header sticky */
+.orders-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1;
+}
+
+
 /* responsive sidebar */
 @media screen and (max-width: 767px) {
 
