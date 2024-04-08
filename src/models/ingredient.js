@@ -7,10 +7,15 @@ const ingredientSchema = new mongoose.Schema({
     },
     quantity: {
         type: Number,
-        required: true },
+        required: true
+    },
     unit: {
         type: String,
         required: true
+    },
+    min: {
+        type: Number,
+        required: false
     },
     price: {
         type: Number,
@@ -29,3 +34,5 @@ const ingredientSchema = new mongoose.Schema({
 });
 
 const Ingredient = mongoose.model('Ingredient', ingredientSchema);
+
+module.exports = Ingredient;
