@@ -86,13 +86,16 @@ document.addEventListener("DOMContentLoaded", () => {
             }"><a class="bx trigger bx-trash"></a></li></button>
           </div>
         `;
+
+        const tableNumberInput = document.getElementById("tableNumberInput");
+
+        // add table number input
+        tableNumberInput.innerHTML = `
+              <div>
+                Table Number: <input type="text" id="tableNumber">
+              </div>
+            `;
       });
-      // add table number input
-      cartItemsContainer.innerHTML += `
-        <div>
-          Table Number: <input type="text" id="tableNumber">
-        </div>
-      `;
     }
 
     renderSubtotal();

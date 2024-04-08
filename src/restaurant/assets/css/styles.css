@@ -91,7 +91,19 @@ body {
   border: none
 }
 
-#payNowButton {}
+#payNowButton {
+  background-color: #ffffff;
+  color: black;
+  padding: 0.5rem 1rem;
+  border: solid 2px #383838;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#tableNumberInput {
+  margin-top: 15px;
+  margin-bottom: 14px;
+}
 
 .awn-top-right {
   margin-top: 50px;
