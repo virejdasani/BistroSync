@@ -11,12 +11,13 @@ router.get("/", (req, res) => {
 
 router.post("/checkout", async (req, res) => {
   const Checkout = require("../src/models/checkout");
+  const Ingredient = require("../src/models/ingredient");
 
   // Save checkout to database
-  var tableNumber = req.body.tableNumber;
-  var items = req.body.items;
-  var totalAmount = items.reduce((total, item) => total + item.price * item.quantity, 0);
-  var company = req.company;
+  const tableNumber = req.body.tableNumber;
+  const items = req.body.items;
+  const totalAmount = items.reduce((total, item) => total + item.price * item.quantity, 0);
+  const company = req.company;
 
   await Checkout.create({
     items,
