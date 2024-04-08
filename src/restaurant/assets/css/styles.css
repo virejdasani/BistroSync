@@ -67,6 +67,7 @@ body {
   width: 50%;
   min-width: 400px;
   margin: 0 auto;
+  display: inline;
 }
 
 .subtotalText {
@@ -709,7 +710,7 @@ img {
   transform: translate(-50%, -50%);
   background-color: white;
   padding: 1rem 1.5rem;
-  width: 30rem;
+  width: 35rem;
   border-radius: 0.5rem;
 }
 
@@ -720,11 +721,11 @@ img {
   text-align: center;
   cursor: pointer;
   border-radius: 0.25rem;
-  background-color: lightgray;
+  background-color: (211, 211, 211);
 }
 
 .close-button:hover {
-  background-color: darkgray;
+  background-color: (169, 169, 169);
 }
 
 .show-modal {

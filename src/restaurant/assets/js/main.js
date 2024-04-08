@@ -81,7 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
         <div>
           Table Number: <input type="text" id="tableNumber">
         </div>
-        <button id="payNowButton">Pay Now</button>
       `;
     }
 
@@ -90,6 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (payNowButton) {
       payNowButton.addEventListener("click", handleCheckoutButton);
     }
+  
 
     renderSubtotal();
     attachDeleteButtonListeners(); // attach delete button event listeners
@@ -100,8 +100,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const subtotal = cart.reduce(
       (total, item) => total + item.price * item.quantity,
       0
+      
     );
     subtotalContainer.textContent = `Subtotal: £${subtotal.toFixed(2)}`;
+    payNowButton.innerHTML += `
+    <button id="payNowButton">Pay Now</button>
+    `;
+
   };
 
   // call when the DOM content is loaded
