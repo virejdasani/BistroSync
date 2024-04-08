@@ -1,6 +1,23 @@
+// notifcations
+options = {
+  position: "top-right",
+  duration: 3000,
+  labels: {
+    success: "Added to cart",
+    alert: "Alert",
+    info: "Info",
+    warning: "Warning",
+  },
+  maxNotifications: 2,
+  durations: {
+    success: 2000,
+  },
+};
+
+let notifier = new AWN(options);
+
 // render menu items from api
 document.addEventListener("DOMContentLoaded", () => {
-
   const restaurant = window.location.pathname.split("/")[1];
   document.getElementById("restaurantName").textContent = restaurant;
 
@@ -14,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
       cart.push({ ...item, quantity: 1 });
     }
     renderCart();
+    // notify user with what they added to cart
+    notifier.success(item.name + " added to cart");
   };
 
   const removeFromCart = (itemName) => {
@@ -89,7 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (payNowButton) {
       payNowButton.addEventListener("click", handleCheckoutButton);
     }
-  
 
     renderSubtotal();
     attachDeleteButtonListeners(); // attach delete button event listeners
@@ -100,13 +118,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const subtotal = cart.reduce(
       (total, item) => total + item.price * item.quantity,
       0
-      
     );
     subtotalContainer.textContent = `Subtotal: £${subtotal.toFixed(2)}`;
     payNowButton.innerHTML += `
     <button id="payNowButton">Pay Now</button>
     `;
-
   };
 
   // call when the DOM content is loaded

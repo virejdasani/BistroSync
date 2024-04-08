@@ -76,6 +76,16 @@ body {
   margin-top: 0.6rem;
 }
 
+.deleteButton {
+  background: none;
+  cursor: pointer;
+  border: none
+}
+
+.awn-top-right {
+  margin-top: 50px;
+}
+
 h1,
 h2,
 h3,
@@ -733,18 +743,4 @@ img {
   visibility: visible;
   transform: scale(1.0);
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
-}
-
-.deleteButton {
-  float: center;
-  width: 2.0rem;
-  line-height: 1.5rem;
-  text-align: center;
-  cursor: pointer;
-  background-color: white;
-  border-radius: .25rem;
-}
-
-.deleteButton:hover {
-  background-color: (169, 169, 169);
 }
