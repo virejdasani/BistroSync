@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cartItemsContainer.innerHTML = "";
       cart.forEach((item) => {
         cartItemsContainer.innerHTML += `
-          <div>
+          <div class="cartItem">
             ${item.name} ${item.quantity > 1 ? `x${item.quantity}` : ""} - £${(
           item.price * item.quantity
         ).toFixed(2)}
