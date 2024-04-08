@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ).toFixed(2)}
             <button class="deleteButton" data-name="${
               item.name
-            }">Remove from cart</button>
+            }"><a class="bx trigger bx-trash"></a></li></button>
           </div>
         `;
       });
