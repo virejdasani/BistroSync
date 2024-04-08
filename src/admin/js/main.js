@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
                     .then(response => response.json())
                     .then(data => {
-                        console.log(data);
                         if (data.status === "ok") {
                             btn.parentElement.parentElement.remove();
                         }
@@ -30,7 +29,19 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    const loadTable = (orders) => {
+    const loadTable = (orders, type) => {
+        // Add action header if pending orders
+        if (type === "pending" && !document.getElementById("action-col")) {
+            const actionCol = document.createElement("th");
+            actionCol.id = "action-col";
+            actionCol.textContent = "Action";
+            document.querySelector("#ordersTableHead tr").appendChild(actionCol);
+        }
+        else if (type === "past") {
+            const actionCol = document.getElementById("action-col");
+            if (actionCol) actionCol.remove();
+        }
+
         const orderTable = document.getElementById("ordersTableBody");
         orders.forEach(order => {
             order.items.forEach(item => {
@@ -42,8 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     <td>${order.tableNumber}</td>
                     <td>${item.name}</td>
                     <td>${item.quantity}</td>
-                    <td>${item.price * item.quantity}</td>
-                    <td><button class="btn btn-primary completeBtn">Complete</button></td>`;
+                    <td>${item.price * item.quantity}</td>`;
+                if (type === "pending") row.innerHTML += `<td><button class="btn btn-primary completeBtn">Complete</button></td>`;
                 orderTable.appendChild(row);
             });
         });
@@ -57,9 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(response => response.json())
             .then(data => {
                 const orders = data;
-                const orderTable = document.getElementById("ordersTableBody");
                 document.getElementById("ordersType").innerHTML = "Pending Orders";
-                loadTable(orders);
+                loadTable(orders, "pending");
             })
             .catch(err => console.error(err));
     };
@@ -72,10 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(response => response.json())
             .then(data => {
                 const orders = data;
-                const orderTable = document.getElementById("pastOrdersTableBody");
                 document.getElementById("ordersType").innerHTML = "Past Orders";
-                loadTable(orders);
-
+                loadTable(orders, "past");
             })
             .catch(err => console.error(err));
     };
