@@ -77,7 +77,6 @@ body {
   padding: 1rem;
   border: 1px solid #d1d1d1;
   border-radius: 5px;
-
 }
 
 .subtotalText {
@@ -90,6 +89,10 @@ body {
   background: none;
   cursor: pointer;
   border: none
+}
+
+#payNowButton {
+  
 }
 
 .awn-top-right {
