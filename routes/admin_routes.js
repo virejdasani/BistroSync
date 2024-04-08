@@ -3,6 +3,7 @@ const router = express.Router();
 
 const path = require('path');
 const User = require('../src/models/user.js');
+const Checkout = require('../src/models/checkout');
 
 router.use(express.static('src/admin'));
 
@@ -47,17 +48,28 @@ router.route('/logout')
     });
 
 router.get('/orders', async function(req, res) {
-    const Checkout = require('../src/models/checkout');
     const company = req.company;
     const pendingOrders = await Checkout.find({company, status: 'pending'}).populate('company');
     return res.json(pendingOrders);
 });
 
 router.get('/past_orders', async function(req, res) {
-    const Checkout = require('../src/models/checkout');
     const company = req.company;
     const pastOrders = await Checkout.find({company, status: 'completed'}).populate('company');
     return res.json(pastOrders);
+});
+
+router.post('/orders/:id', async function(req, res) {
+    if (req.body.status !== 'completed') {
+        return res.status(400).json({error: 'Invalid status'});
+    }
+
+    const order = await Checkout.findById(req.params.id).populate('company');
+    if (order && order.company._id.toString() === req.company.toString()) {
+        order.status = 'completed';
+        await order.save();
+        return res.json({status: 'ok'});
+    }
 });
 
 function validate(username, password) {

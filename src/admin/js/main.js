@@ -6,11 +6,36 @@ document.addEventListener("DOMContentLoaded", () => {
         return document.getElementById("ordersTableBody").innerHTML = "";
     };
 
+    const attachCompleteButtonListeners = () => {
+        const completeBtns = document.querySelectorAll(".completeBtn");
+        completeBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const orderId = btn.parentElement.parentElement.id;
+                fetch(`/${restaurant}/admin/orders/${orderId}`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ status: "completed" })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.status === "ok") {
+                            btn.parentElement.parentElement.remove();
+                        }
+                    })
+                    .catch(err => console.error(err));
+            });
+        });
+    }
+
     const loadTable = (orders) => {
         const orderTable = document.getElementById("ordersTableBody");
         orders.forEach(order => {
             order.items.forEach(item => {
                 const row = document.createElement("tr");
+                row.id = order._id;
                 const id = order._id.toString().slice(-6);
                 row.innerHTML = `
                     <td>${id}</td>
@@ -18,10 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     <td>${item.name}</td>
                     <td>${item.quantity}</td>
                     <td>${item.price * item.quantity}</td>
-                    <td><button class="btn btn-primary">Complete</button></td>`;
+                    <td><button class="btn btn-primary completeBtn">Complete</button></td>`;
                 orderTable.appendChild(row);
             });
         });
+        attachCompleteButtonListeners();
     }
 
     // load pending orders
@@ -68,4 +94,5 @@ document.addEventListener("DOMContentLoaded", () => {
         pastOrderLink.classList.add("active");
         dashboard.classList.remove("active");
     });
+
 });
