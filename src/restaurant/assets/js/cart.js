@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const handleCheckoutButton = () => {
+    console.log(cart);
+
     const tableNumber = document.getElementById("tableNumber").value;
     // add this to mongodb
     const restaurant = window.location.pathname.split("/")[1];
@@ -79,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         `;
       });
-      // add pay now button
+      // add table number input
       cartItemsContainer.innerHTML += `
         <div>
           Table Number: <input type="text" id="tableNumber">
@@ -88,6 +90,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     renderSubtotal();
+
+    // add pay now button
+    payNowButtonContainer.innerHTML = `
+    <button id="payNowButton">Pay Now</button>
+    `;
+
+    // Attach event listener to pay now button
+    const payNowButton = document.getElementById("payNowButton");
+    if (payNowButton) {
+      payNowButton.addEventListener("click", handleCheckoutButton);
+    }
+
     attachDeleteButtonListeners(); // attach delete button event listeners
   };
 
@@ -98,15 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
       0
     );
     subtotalContainer.textContent = `Subtotal: £${subtotal.toFixed(2)}`;
-    payNowButtonContainer.innerHTML = `
-    <button id="payNowButton">Pay Now</button>
-    `;
-
-    // Attach event listener to pay now button
-    const payNowButton = document.getElementById("payNowButton");
-    if (payNowButton) {
-      payNowButton.addEventListener("click", handleCheckoutButton);
-    }
   };
 
   // call when the DOM content is loaded
