@@ -31,6 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(cart);
 
     const tableNumber = document.getElementById("tableNumber").value;
+
+    if (!tableNumber) {
+      alert("Please enter a table number");
+      return;
+    }
+
     // add this to mongodb
     const restaurant = window.location.pathname.split("/")[1];
     fetch(`/${restaurant}/checkout`, {
