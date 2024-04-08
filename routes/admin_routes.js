@@ -4,6 +4,7 @@ const router = express.Router();
 const path = require('path');
 const User = require('../src/models/user.js');
 const Checkout = require('../src/models/checkout');
+const Ingredient = require('../src/models/ingredient');
 
 router.use(express.static('src/admin'));
 
@@ -70,6 +71,12 @@ router.post('/orders/:id', async function(req, res) {
         await order.save();
         return res.json({status: 'ok'});
     }
+});
+
+router.get('/stock', async function(req, res) {
+    const company = req.company;
+    const ingredients = await Ingredient.find({company: company});
+    return res.json(ingredients);
 });
 
 function validate(username, password) {
