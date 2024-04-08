@@ -10,7 +10,7 @@ options = {
   },
   maxNotifications: 2,
   durations: {
-    success: 2000,
+    success: 2200,
   },
 };
 
