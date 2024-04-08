@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCart();
     // notify user with what they added to cart
     notifier.success(item.name + " added to cart");
+
+    console.log(cart);
   };
 
   const removeFromCart = (itemName) => {
@@ -26,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const handleCheckoutButton = () => {
-    alert("Checkout button clicked");
     const tableNumber = document.getElementById("tableNumber").value;
     // add this to mongodb
     const restaurant = window.location.pathname.split("/")[1];
