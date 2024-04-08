@@ -8,7 +8,7 @@ options = {
     info: "Info",
     warning: "Warning",
   },
-  maxNotifications: 2,
+  maxNotifications: 4,
   durations: {
     success: 2200,
   },
