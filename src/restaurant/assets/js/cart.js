@@ -13,10 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
       cart.push({ ...item, quantity: 1 });
     }
     renderCart();
-    // notify user with what they added to cart
-    notifier.success(item.name + " added to cart");
 
-    console.log(cart);
+    // notify user with what they added to cart
+    notifier.success(item.name);
   };
 
   const removeFromCart = (itemName) => {
@@ -49,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "ok") {
-          alert("Checkout successful");
+          notifier.alert("Checkout successful");
           cart.length = 0; // clear cart
           renderCart();
           toggleModal();
@@ -200,6 +199,9 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", () => {
           const name = button.getAttribute("data-name");
           const price = parseFloat(button.getAttribute("data-price"));
+          const cartCount = document.getElementById("cartCount");
+          cartCount.textContent =
+            parseInt(cartCount.textContent) + 1 + " items";
           addToCart({ name, price });
         });
       });

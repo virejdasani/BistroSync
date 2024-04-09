@@ -33,25 +33,31 @@
           <li class="nav_item"><a href="#mains" class="nav_link">Mains</a></li>
           <li class="nav_item"><a href="#desserts" class="nav_link">Desserts</a></li>
           <li class="nav_item"><a href="#drinks" class="nav_link">Drinks</a></li>
-          <div class="modal">
-            <div class="modal-content">
-              <span class="close-button">x</span>
-              <div class="center">
-                <div class="cartContainer">
-                  <h2 class="center" id="cart">Cart</h2>
-                  <div id="cartItems"></div>
-                  <div class="subtotalText" id="subtotal"></div>
-                  <div id="tableNumberInput"></div>
-                  <div id="payNowButtonContainer"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </ul>
       </div>
     </nav>
+
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close-button">x</span>
+        <div class="center">
+          <div class="cartContainer">
+            <h2 class="center" id="cart">Cart</h2>
+            <div id="cartItems"></div>
+            <div class="subtotalText" id="subtotal"></div>
+            <div id="tableNumberInput"></div>
+            <div id="payNowButtonContainer"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#" class="float trigger">
+      <i class="bx trigger bx-shopping-bag bx-lg"></i>
+      <span id="cartCount" class="cartCount">0 items</span>
+    </a>
   </header>
+
 
   <section class="featured section" id="featured">
     <h2 class="section-title">Menu</h2>
@@ -69,13 +75,6 @@
     <h2 class="center" id="drinks">Drinks</h2>
     <div class="featured_container bd-grid menu_container" id="drinksItems"></div>
 
-  </section>
-
-  <section class="float">
-    <a href="#" class="">
-      <i class="bx trigger bx-shopping-bag bx-lg"></i>
-      <span class="cartCount">0 items</span>
-    </a>
   </section>
 
   <section newsletter section>
