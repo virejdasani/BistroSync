@@ -125,4 +125,70 @@ document.addEventListener("DOMContentLoaded", () => {
         dashboard.classList.remove("active");
     });
 
+    document.getElementById("addIngredient").addEventListener("click", () => {
+        // get suppliers and populate select
+        fetch(`/${restaurant}/admin/suppliers`)
+            .then(response => response.json())
+            .then(data => {
+                const suppliers = data;
+                const supplierSelect = document.getElementById("stockSupplier");
+                suppliers.forEach(supplier => {
+                    const option = document.createElement("option");
+                    option.value = supplier._id;
+                    option.textContent = supplier.name;
+                    supplierSelect.appendChild(option);
+                });
+            })
+            .catch(err => console.error(err));
+    });
+
+    document.getElementById("addIngredientForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("ingredientName").value;
+        const quantity = document.getElementById("quantity").value;
+        const price = document.getElementById("price").value;
+        const min = document.getElementById("min").value;
+        const supplier = document.getElementById("stockSupplier").value;
+        fetch(`/${restaurant}/admin/stock/create`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name, quantity, price, min, supplier})
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "ok") {
+                    document.getElementById("addIngredientForm").reset();
+                    alert("Ingredient added successfully");
+                    document.querySelector(".modal").classList.toggle("show-modal");
+                }
+            })
+            .catch(err => console.error(err));
+    });
+
+    document.getElementById("addSupplierForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("supplierName").value;
+        const phone = document.getElementById("supplierPhone").value;
+        const email = document.getElementById("supplierEmail").value;
+        const location = document.getElementById("supplierPostcode").value;
+        fetch(`/${restaurant}/admin/supplier/create`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name, phone, email, location })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "ok") {
+                    document.getElementById("addSupplierForm").reset();
+                    alert("Supplier added successfully");
+                    document.querySelector(".modal").classList.toggle("show-modal");
+                }
+            })
+            .catch(err => console.error(err));
+    });
+
 });

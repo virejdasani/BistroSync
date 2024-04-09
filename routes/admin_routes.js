@@ -5,6 +5,7 @@ const path = require('path');
 const User = require('../src/models/user.js');
 const Checkout = require('../src/models/checkout');
 const Ingredient = require('../src/models/ingredient');
+const Supplier = require('../src/models/supplier');
 
 router.use(express.static('src/admin'));
 
@@ -77,6 +78,28 @@ router.get('/stock', async function(req, res) {
     const company = req.company;
     const ingredients = await Ingredient.find({company: company});
     return res.json(ingredients);
+});
+
+router.post('/stock/create', async function(req, res) {
+    const {name, quantity, price, min, supplier} = req.body;
+    const company = req.company;
+    await Ingredient.create({name, quantity, price, min, supplier, company});
+    return res.json({status: 'ok'});
+});
+
+// get suppliers to fill dropdown in create ingredient form
+router.get('/suppliers', async function(req, res) {
+    const company = req.company;
+    const suppliers = await Supplier.find({company: company});
+    return res.json(suppliers);
+});
+
+router.post('/supplier/create', async function(req, res) {
+    const {name, phone, email, location} = req.body;
+    const date = new Date();
+    const company = req.company;
+    await Supplier.create({name, email, phone, location, date, company});
+    return res.json({status: 'ok'});
 });
 
 function validate(username, password) {
