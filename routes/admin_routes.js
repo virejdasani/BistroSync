@@ -95,9 +95,7 @@ router.get('/suppliers', async function(req, res) {
 });
 
 router.post('/supplier/create', async function(req, res) {
-    console.log("reached backend");
     const {name, phone, email, location} = req.body;
-    console.log("here req: "+ req.body);
     const date = new Date();
     const company = req.company;
     await Supplier.create({name, email, phone, location, date, company});
