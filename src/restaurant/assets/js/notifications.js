@@ -4,7 +4,7 @@ options = {
   duration: 3000,
   labels: {
     success: "Added to cart",
-    alert: "Alert",
+    alert: "Please enter your table number",
     info: "Info",
     warning: "Warning",
   },

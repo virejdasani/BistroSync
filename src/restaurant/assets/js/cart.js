@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tableNumber = document.getElementById("tableNumber").value;
 
     if (!tableNumber) {
-      alert("Please enter a table number");
+      notifier.alert("Your table number is printed on your table");
       return;
     }
 
