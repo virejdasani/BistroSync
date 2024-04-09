@@ -31,15 +31,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const loadTable = (orders, type) => {
         // Add action header if pending orders
-        if (type === "pending" && !document.getElementById("action-col")) {
-            const actionCol = document.createElement("th");
-            actionCol.id = "action-col";
-            actionCol.textContent = "Action";
-            document.querySelector("#ordersTableHead tr").appendChild(actionCol);
+        if (type === "pending") {
+            if (!document.getElementById("action-col")) {
+                const actionCol = document.createElement("th");
+                actionCol.id = "action-col";
+                actionCol.textContent = "Action";
+                document.querySelector("#ordersTableHead tr").appendChild(actionCol);
+            }
+            if (!document.getElementById("date-time")) {
+                const dateTimeCol = document.createElement("th");
+                dateTimeCol.id = "date-time";
+                dateTimeCol.textContent = "Date & Time";
+                document.getElementById("order-id").insertAdjacentElement("afterend", dateTimeCol);
+            }
         }
+
         else if (type === "past") {
             const actionCol = document.getElementById("action-col");
             if (actionCol) actionCol.remove();
+            const dateTimeCol = document.getElementById("date-time");
+            if (dateTimeCol) dateTimeCol.textContent = "Date & Time";
         }
 
         const orderTable = document.getElementById("ordersTableBody");
@@ -48,13 +59,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 const row = document.createElement("tr");
                 row.id = order._id;
                 const id = order._id.toString().slice(-6);
-                row.innerHTML = `
-                    <td>${id}</td>
-                    <td>${order.tableNumber}</td>
-                    <td>${item.name}</td>
-                    <td>${item.quantity}</td>
-                    <td>${item.price * item.quantity}</td>`;
-                if (type === "pending") row.innerHTML += `<td><button class="btn btn-primary completeBtn">Complete</button></td>`;
+                if (type === "pending") {
+                    row.innerHTML = `
+                        <td>${id}</td>
+                        <td>${new Date(order.createdAt).getHours()}:${new Date(order.createdAt).getMinutes()}</td>
+                        <td>${order.tableNumber}</td>
+                        <td>${item.name}</td>
+                        <td>${item.quantity}</td>
+                        <td>${item.price * item.quantity}</td>
+                        <td><button class="btn btn-primary completeBtn">Complete</button></td>`
+                } else {
+                    row.innerHTML = `
+                        <td>${id}</td>
+                        <td>${new Date(order.createdAt).toLocaleString()}</td>
+                        <td>${order.tableNumber}</td>
+                        <td>${item.name}</td>
+                        <td>${item.quantity}</td>
+                        <td>${item.price * item.quantity}</td>`
+                }
                 orderTable.appendChild(row);
             });
         });
