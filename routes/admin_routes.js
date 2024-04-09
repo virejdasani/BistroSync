@@ -81,9 +81,9 @@ router.get('/stock', async function(req, res) {
 });
 
 router.post('/stock/create', async function(req, res) {
-    const {name, quantity, price, min} = req.body;
+    const {name, quantity, price, min, supplier} = req.body;
     const company = req.company;
-    await Ingredient.create({name, quantity, price, min, company});
+    await Ingredient.create({name, quantity, price, min, supplier, company});
     return res.json({status: 'ok'});
 });
 

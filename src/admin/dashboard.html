@@ -35,7 +35,7 @@
       <div class="jumbotron jumbotron-fluid rounded bg-white border-0 shadow-sm px-4">
         <div class="container">
           <h1 class="display-4 mb-2 text-primary" id="ordersType"></h1>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addIngredientModal">
+          <button type="button" class="btn btn-primary" id="addIngredient" data-bs-toggle="modal" data-bs-target="#addIngredientModal">
             Add Ingredient
           </button>
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSupplierModal">
@@ -100,6 +100,11 @@
                 <div class="form-floating mb-3">
                   <input type="number" name="min" class="form-control" id="min" placeholder="Minimum">
                   <label for="min">Minimum Stock Quantity</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <select name="supplier" class="form-select" id="stockSupplier" required>
+                    <option value="" selected disabled>Select Supplier</option>
+                  </select>
                 </div>
               </div>
               <div class="modal-footer">

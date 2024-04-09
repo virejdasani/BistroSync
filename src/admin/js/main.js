@@ -125,18 +125,36 @@ document.addEventListener("DOMContentLoaded", () => {
         dashboard.classList.remove("active");
     });
 
+    document.getElementById("addIngredient").addEventListener("click", () => {
+        // get suppliers and populate select
+        fetch(`/${restaurant}/admin/suppliers`)
+            .then(response => response.json())
+            .then(data => {
+                const suppliers = data;
+                const supplierSelect = document.getElementById("stockSupplier");
+                suppliers.forEach(supplier => {
+                    const option = document.createElement("option");
+                    option.value = supplier._id;
+                    option.textContent = supplier.name;
+                    supplierSelect.appendChild(option);
+                });
+            })
+            .catch(err => console.error(err));
+    });
+
     document.getElementById("addIngredientForm").addEventListener("submit", (e) => {
         e.preventDefault();
         const name = document.getElementById("ingredientName").value;
         const quantity = document.getElementById("quantity").value;
         const price = document.getElementById("price").value;
         const min = document.getElementById("min").value;
+        const supplier = document.getElementById("stockSupplier").value;
         fetch(`/${restaurant}/admin/stock/create`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ name, quantity, price, min })
+            body: JSON.stringify({ name, quantity, price, min, supplier})
         })
             .then(response => response.json())
             .then(data => {
