@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    const loadTable = (orders, type) => {
+    const loadOrdersTable = (orders, type) => {
         // Add action header if pending orders
         if (type === "pending") {
             if (!document.getElementById("action-col")) {
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(data => {
                 const orders = data;
                 document.getElementById("ordersType").innerHTML = "Pending Orders";
-                loadTable(orders, "pending");
+                loadOrdersTable(orders, "pending");
             })
             .catch(err => console.error(err));
     };
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(data => {
                 const orders = data;
                 document.getElementById("ordersType").innerHTML = "Past Orders";
-                loadTable(orders, "past");
+                loadOrdersTable(orders, "past");
             })
             .catch(err => console.error(err));
     };
