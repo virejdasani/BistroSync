@@ -11,12 +11,15 @@ document.addEventListener("DOMContentLoaded", () => {
         completeBtns.forEach(btn => {
             btn.addEventListener("click", () => {
                 const orderId = btn.parentElement.parentElement.id;
+                // get food id
+                const foodId = btn.parentElement.parentElement.querySelector("#foodId").textContent;
+                console.log("FoodID: " + foodId);
                 fetch(`/${restaurant}/admin/orders/${orderId}`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({ status: "completed" })
+                    body: JSON.stringify({ status: "completed", foodId: foodId })
                 })
                     .then(response => response.json())
                     .then(data => {
@@ -55,16 +58,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const orderTable = document.getElementById("ordersTableBody");
         orders.forEach(order => {
+            const id = order._id.toString().slice(-6);
             order.items.forEach(item => {
                 const row = document.createElement("tr");
                 row.id = order._id;
-                const id = order._id.toString().slice(-6);
                 if (type === "pending") {
                     row.innerHTML = `
                         <td>${id}</td>
                         <td>${new Date(order.createdAt).getHours()}:${new Date(order.createdAt).getMinutes()}</td>
                         <td>${order.tableNumber}</td>
                         <td>${item.name}</td>
+                        <td id="foodId">${item.foodId}</td>
                         <td>${item.quantity}</td>
                         <td>${item.price * item.quantity}</td>
                         <td><button class="btn btn-primary completeBtn">Complete</button></td>`
@@ -74,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td>${new Date(order.createdAt).toLocaleString()}</td>
                         <td>${order.tableNumber}</td>
                         <td>${item.name}</td>
+                        <td id="foodId">${item.foodId}</td>
                         <td>${item.quantity}</td>
                         <td>${item.price * item.quantity}</td>`
                 }

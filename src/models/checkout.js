@@ -7,6 +7,11 @@ const checkoutSchema = new mongoose.Schema({
       price: Number,
       foodId: Number,
       quantity: Number,
+      status: {
+        type: String,
+        enum: ["pending", "completed"],
+        default: "pending",
+      },
     },
   ],
   totalAmount: Number,

@@ -9,6 +9,10 @@ const Supplier = require('../src/models/supplier');
 
 router.use(express.static('src/admin'));
 
+router.get('/', function(req, res) {
+    res.redirect('dashboard');
+});
+
 router.route('/login')
     .get(function(req, res) {
         res.sendFile(path.resolve("src/admin/login.html"));
@@ -52,12 +56,21 @@ router.route('/logout')
 router.get('/orders', async function(req, res) {
     const company = req.company;
     const pendingOrders = await Checkout.find({company, status: 'pending'}).populate('company');
+
+    // only show items that are not completed
+    pendingOrders.forEach(order => {
+        order.items = order.items.filter(item => item.status !== 'completed');
+    });
+
     return res.json(pendingOrders);
 });
 
 router.get('/past_orders', async function(req, res) {
     const company = req.company;
-    const pastOrders = await Checkout.find({company, status: 'completed'}).populate('company');
+    const pastOrders = await Checkout.find({company}).populate('company');
+    pastOrders.forEach(order => {
+        order.items = order.items.filter(item => item.status === 'completed');
+    });
     return res.json(pastOrders);
 });
 
@@ -66,12 +79,54 @@ router.post('/orders/:id', async function(req, res) {
         return res.status(400).json({error: 'Invalid status'});
     }
 
+    const foodId = req.body.foodId;
     const order = await Checkout.findById(req.params.id).populate('company');
-    if (order && order.company._id.toString() === req.company.toString()) {
-        order.status = 'completed';
-        await order.save();
-        return res.json({status: 'ok'});
-    }
+
+    // fetch api to get ingredients of order
+    fetch("https://raw.githubusercontent.com/virejdasani/BistroSync/main/src/api/menu.json")
+        .then((response) => response.json())
+        .then(async (data) => {
+            var ingredients;
+
+            for (let key in data.menu) {
+                for (let key2 in data.menu[key]) {
+                    if (data.menu[key][key2].id == foodId) {
+                        console.log("ingredients fds: " + data.menu[key][key2].ingredients)
+                        ingredients = data.menu[key][key2].ingredients;
+                        break;
+                    }
+                }
+            }
+
+            ingredients.forEach(async ingredient => {
+                const stock = await Ingredient.findOne({name: ingredient, company: order.company});
+                if (stock) {
+                    stock.quantity -= 1;
+                    await stock.save();
+                } else {
+                    console.log("no stock");
+                }
+            });
+
+            if (order && order.company._id.toString() === req.company.toString()) {
+                let allCompleted = true;
+                order.items.forEach(item => {
+                    if (item.foodId == foodId) {
+                        item.status = 'completed';
+                    }
+                    if (item.status !== 'completed') {
+                        allCompleted = false;
+                    }
+                });
+
+                if (allCompleted) {
+                    order.status = 'completed';
+                }
+
+                await order.save();
+                return res.json({status: 'ok'});
+            }
+        })
 });
 
 router.get('/stock', async function(req, res) {
