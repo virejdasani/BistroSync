@@ -19,6 +19,15 @@ router.post("/checkout", async (req, res) => {
   const totalAmount = items.reduce((total, item) => total + item.price * item.quantity, 0);
   const company = req.company;
 
+  for (const item of items) {
+    if (item.quantity > 1) {
+      for (let i = 1; i < item.quantity; i++) {
+        items.push({ ...item, quantity: 1 });
+      }
+      item.quantity = 1;
+    }
+  }
+
   await Checkout.create({
     items,
     totalAmount,
