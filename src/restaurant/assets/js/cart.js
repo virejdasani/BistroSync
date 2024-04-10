@@ -153,10 +153,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <p class="collection_desc">${item.description}</p>
             <span class="hoodie_price">£${item.price.toFixed(2)}</span>
             <button class="button-light addToCartButton" data-name="${
-              item.name
-            }" data-price="${
-          item.price
-        }">Add to Cart<i class='bx bx-right-arrow button-icon'></i></button>
+              item.name}" data-price="${item.price}" data-foodId=${item.id}">
+            Add to Cart<i class='bx bx-right-arrow button-icon'></i></button>
           </article>
         `;
       };
@@ -199,10 +197,11 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", () => {
           const name = button.getAttribute("data-name");
           const price = parseFloat(button.getAttribute("data-price"));
+          const foodId = parseInt(button.getAttribute("data-foodId"));
           const cartCount = document.getElementById("cartCount");
           cartCount.textContent =
             parseInt(cartCount.textContent) + 1 + " items";
-          addToCart({ name, price });
+          addToCart({ name, price, foodId });
         });
       });
     })

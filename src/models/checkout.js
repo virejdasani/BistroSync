@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const checkoutSchema = new mongoose.Schema({
   items: [
     {
-      foodId: Number,
       name: String,
       price: Number,
+      foodId: Number,
       quantity: Number,
     },
   ],
