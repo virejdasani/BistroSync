@@ -25,6 +25,9 @@
       <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center" id="pastOrders">
         <span class="ml-2">Past Orders</span>
       </a>
+      <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center" id="stock">
+        <span class="ml-2">Stock</span>
+      </a>
     </div>
   </div>
 
@@ -63,19 +66,38 @@
         </div>
       </div>
 
-      <section class="row">
-        <div class="col-md-6 col-lg-4">
-          <!-- card -->
-          <!-- <article class="p-4 rounded shadow-sm mb-4">
-            <a href="#" class="d-flex align-items-center">
-              <span class="bi bi-box h5"></span>
-              <h5 class="ml-2">Past Orders</h5>
-            </a>
-          </article> -->
+      <div class="stock" style="display: none;">
+        <div class="jumbotron jumbotron-fluid rounded bg-white border-0 shadow-sm px-4">
+          <div class="container">
+            <h1 class="display-4 mb-2 text-primary" id="ordersType"></h1>
+            <button type="button" class="btn btn-primary" id="addIngredient" data-bs-toggle="modal" data-bs-target="#addIngredientModal">
+              Add Ingredient Stock
+            </button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSupplierModal">
+              Add Supplier
+            </button>
+            <p class="lead text-muted orders-display">
+              <div class="stock-table">
+                <table class="table table-striped" id="stockTable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Ingredient ID</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Price</th>
+                      <th scope="col" id="action-col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="stockTableBody">
+                  </tbody>
+                </table>
+              </div>
+            </p>
+          </div>
         </div>
-      </section>
+      </div>
 
-
+      <!-- MODALS -->
       <div class="modal fade" id="addIngredientModal" tabindex="-1" aria-labelledby="addIngredientModalLabel">
         <div class="modal-dialog">
           <div class="modal-content">
