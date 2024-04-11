@@ -5,12 +5,13 @@ options = {
   labels: {
     success: "Added to cart",
     alert: "Please enter your table number",
-    info: "Info",
-    warning: "Warning",
+    info: "info",
+    warning: "Deleted from cart",
   },
   maxNotifications: 4,
   durations: {
     success: 2200,
+    warning: 2200,
   },
 };
 

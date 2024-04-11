@@ -21,13 +21,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const removeFromCart = (itemName) => {
     const index = cart.findIndex((item) => item.name === itemName);
     if (index !== -1) {
+      // remove item from cart
       cart.splice(index, 1);
+      notifier.warning(itemName);
+
+      // update cart count on cart icon
+      const cartCount = document.getElementById("cartCount");
+      cartItems = cart.reduce((total, item) => total + item.quantity, 0);
+      cartCount.textContent = cartItems + " items";
+
       renderCart();
     }
   };
 
   const handleCheckoutButton = () => {
-    console.log(cart);
+    // console.log(cart);
 
     const tableNumber = document.getElementById("tableNumber").value;
 
