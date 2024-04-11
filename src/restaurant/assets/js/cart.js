@@ -21,18 +21,37 @@ document.addEventListener("DOMContentLoaded", () => {
   const removeFromCart = (itemName) => {
     const index = cart.findIndex((item) => item.name === itemName);
     if (index !== -1) {
+      // remove item from cart
       cart.splice(index, 1);
+      notifier.warning(itemName);
+
+      // update cart count on cart icon
+      const cartCount = document.getElementById("cartCount");
+      cartItems = cart.reduce((total, item) => total + item.quantity, 0);
+      cartCount.textContent = cartItems + " items";
+
       renderCart();
     }
   };
 
   const handleCheckoutButton = () => {
-    console.log(cart);
+    // console.log(cart);
 
     const tableNumber = document.getElementById("tableNumber").value;
+    const cardHolderName = document.getElementById("cardHolderName").value;
+
+    if (!cardHolderName) {
+      notifier.alert("Please enter card holder name");
+      return;
+    }
 
     if (!tableNumber) {
       notifier.alert("Your table number is printed on your table");
+      return;
+    }
+
+    if (cart.length === 0) {
+      notifier.alert("Your cart is empty");
       return;
     }
 
@@ -48,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "ok") {
-          notifier.alert("Checkout successful");
+          notifier.info("Your order will be served shortly");
           cart.length = 0; // clear cart
           renderCart();
           toggleModal();
@@ -87,13 +106,23 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
 
         const tableNumberInput = document.getElementById("tableNumberInput");
+        const cardHolderNameInput = document.getElementById(
+          "cardHolderNameInput"
+        );
 
         // add table number input
         tableNumberInput.innerHTML = `
-              <div>
-                Table Number: <input type="text" id="tableNumber">
-              </div>
-            `;
+          <div>
+            Table Number: <input type="text" id="tableNumber">
+          </div>
+        `;
+
+        // add card holder name input
+        cardHolderNameInput.innerHTML = `
+          <div>
+            Card Holder Name: <input type="text" id="cardHolderName">
+          </div>
+        `;
       });
     }
 

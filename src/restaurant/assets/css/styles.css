@@ -100,8 +100,12 @@ body {
   cursor: pointer;
 }
 
-#tableNumberInput {
+#cardHolderNameInput {
   margin-top: 15px;
+  margin-bottom: 14px;
+}
+
+#tableNumberInput {
   margin-bottom: 14px;
 }
 
