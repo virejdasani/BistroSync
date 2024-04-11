@@ -91,7 +91,6 @@ router.post('/orders/:id', async function(req, res) {
             for (let key in data.menu) {
                 for (let key2 in data.menu[key]) {
                     if (data.menu[key][key2].id == foodId) {
-                        console.log("ingredients fds: " + data.menu[key][key2].ingredients)
                         ingredients = data.menu[key][key2].ingredients;
                         break;
                     }
@@ -120,7 +119,9 @@ router.post('/orders/:id', async function(req, res) {
                 });
 
                 if (allCompleted) {
+                    // order is completed
                     order.status = 'completed';
+                    order.custName = '';
                 }
 
                 await order.save();
