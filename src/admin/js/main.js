@@ -35,25 +35,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const loadOrdersTable = (orders, type) => {
         // Add action header if pending orders
         if (type === "pending") {
+            if (!document.getElementById("cust-name")) {
+                const custNameCol = document.createElement("th");
+                custNameCol.id = "cust-name";
+                custNameCol.textContent = "Customer Name";
+                tableCol = document.getElementById("table");
+                tableCol.parentNode.insertBefore(custNameCol, tableCol.nextSibling);
+            }
             if (!document.getElementById("action-col")) {
                 const actionCol = document.createElement("th");
                 actionCol.id = "action-col";
                 actionCol.textContent = "Action";
-                document.querySelector("#ordersTableHead tr").appendChild(actionCol);
-            }
-            if (!document.getElementById("date-time")) {
-                const dateTimeCol = document.createElement("th");
-                dateTimeCol.id = "date-time";
-                dateTimeCol.textContent = "Date & Time";
-                document.getElementById("order-id").insertAdjacentElement("afterend", dateTimeCol);
+                tableCol = document.getElementById("price");
+                tableCol.parentNode.insertBefore(actionCol, tableCol.nextSibling);
             }
         }
 
         else if (type === "past") {
             const actionCol = document.getElementById("action-col");
+            const custNameCol = document.getElementById("cust-name");
             if (actionCol) actionCol.remove();
-            const dateTimeCol = document.getElementById("date-time");
-            if (dateTimeCol) dateTimeCol.textContent = "Date & Time";
+            if (custNameCol) custNameCol.remove();
         }
 
         const orderTable = document.getElementById("ordersTableBody");
@@ -67,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td>${id}</td>
                         <td>${new Date(order.createdAt).getHours()}:${new Date(order.createdAt).getMinutes()}</td>
                         <td>${order.tableNumber}</td>
+                        <td>${order.custName}</td>
                         <td>${item.name}</td>
                         <td id="foodId">${item.foodId}</td>
                         <td>${item.quantity}</td>
