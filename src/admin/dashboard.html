@@ -25,7 +25,7 @@
       <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center" id="pastOrders">
         <span class="ml-2">Past Orders</span>
       </a>
-      <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center" id="stock">
+      <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center" id="stockLink">
         <span class="ml-2">Stock</span>
       </a>
     </div>
@@ -36,42 +36,37 @@
     <!-- main content -->
     <main class="p-4 min-vh-100">
       <div class="jumbotron jumbotron-fluid rounded bg-white border-0 shadow-sm px-4">
-        <div class="container">
-          <h1 class="display-4 mb-2 text-primary" id="ordersType"></h1>
-          <button type="button" class="btn btn-primary" id="addIngredient" data-bs-toggle="modal" data-bs-target="#addIngredientModal">
-            Add Ingredient
-          </button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSupplierModal">
-            Add Supplier
-          </button>
-          <p class="lead text-muted orders-display">
-            <div class="orders-table">
-              <table class="table table-striped" id="ordersTable">
-                <thead id="ordersTableHead">
-                  <tr>
-                    <th scope="col" id="order-id">Order ID</th>
-                    <th scope="col" id="date-time">Time Ordered</th>
-                    <th scope="col" id="table">Table</th>
-                    <th scope="col" id="cust-name">Customer Name</th>
-                    <th scope="col" id="foodItem">Food Item</th>
-                    <th scope="col" id="foodId">Food ID</th>
-                    <th scope="col" id="quantity">Quantity</th>
-                    <th scope="col" id="price">Price</th>
-                    <th scope="col" id="action-col">Action</th>
-                  </tr>
-                </thead>
-                <tbody id="ordersTableBody">
-                </tbody>
-              </table>
-            </div>
-          </p>
-        </div>
-      </div>
-
-      <div class="stock" style="display: none;">
-        <div class="jumbotron jumbotron-fluid rounded bg-white border-0 shadow-sm px-4">
+        <div id="orders">
           <div class="container">
             <h1 class="display-4 mb-2 text-primary" id="ordersType"></h1>
+            <p class="lead text-muted orders-display">
+              <div class="orders-table">
+                <table class="table table-striped" id="ordersTable">
+                  <thead id="ordersTableHead">
+                    <tr>
+                      <th scope="col" id="order-id">Order ID</th>
+                      <th scope="col" id="date-time">Time Ordered</th>
+                      <th scope="col" id="table">Table</th>
+                      <th scope="col" id="cust-name">Customer Name</th>
+                      <th scope="col" id="foodItem">Food Item</th>
+                      <th scope="col" id="foodId">Food ID</th>
+                      <th scope="col" id="orderQuantity">Quantity</th>
+                      <th scope="col" id="orderPrice">Price</th>
+                      <th scope="col" id="action-col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ordersTableBody">
+                  </tbody>
+                </table>
+              </div>
+            </p>
+          </div>
+        </div>
+
+        <!-- STOCK DIV -->
+        <div id="stock" style="display: none;">
+          <div class="container">
+            <h1 class="display-4 mb-2 text-primary">Stock</h1>
             <button type="button" class="btn btn-primary" id="addIngredient" data-bs-toggle="modal" data-bs-target="#addIngredientModal">
               Add Ingredient Stock
             </button>
@@ -83,10 +78,11 @@
                 <table class="table table-striped" id="stockTable">
                   <thead>
                     <tr>
-                      <th scope="col">Ingredient ID</th>
                       <th scope="col">Name</th>
                       <th scope="col">Quantity</th>
                       <th scope="col">Price</th>
+                      <th scope="col">Minimum Stock Quantity</th>
+                      <th scope="col">Supplier</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>

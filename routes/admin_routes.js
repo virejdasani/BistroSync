@@ -132,14 +132,15 @@ router.post('/orders/:id', async function(req, res) {
 
 router.get('/stock', async function(req, res) {
     const company = req.company;
-    const ingredients = await Ingredient.find({company: company});
+    const ingredients = await Ingredient.find({company: company}).populate('supplier');
     return res.json(ingredients);
 });
 
 router.post('/stock/create', async function(req, res) {
     const {name, quantity, price, min, supplier} = req.body;
+    const unit = 'unit'; // testing
     const company = req.company;
-    await Ingredient.create({name, quantity, price, min, supplier, company});
+    await Ingredient.create({name, quantity, unit, min, price, supplier, company});
     return res.json({status: 'ok'});
 });
 

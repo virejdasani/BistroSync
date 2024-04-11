@@ -11,9 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         completeBtns.forEach(btn => {
             btn.addEventListener("click", () => {
                 const orderId = btn.parentElement.parentElement.id;
-                // get food id
                 const foodId = btn.parentElement.parentElement.querySelector("#foodId").textContent;
-                console.log("FoodID: " + foodId);
                 fetch(`/${restaurant}/admin/orders/${orderId}`, {
                     method: "POST",
                     headers: {
@@ -46,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const actionCol = document.createElement("th");
                 actionCol.id = "action-col";
                 actionCol.textContent = "Action";
-                tableCol = document.getElementById("price");
+                tableCol = document.getElementById("orderPrice");
                 tableCol.parentNode.insertBefore(actionCol, tableCol.nextSibling);
             }
         }
@@ -118,19 +116,100 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(err => console.error(err));
     };
 
+    const showOrdersDiv = () => {
+        document.getElementById("orders").style.display = "block";
+    }
+
+    const hideOrdersDiv = () => {
+        document.getElementById("orders").style.display = "none";
+    }
+
+    const hideStockTable = () => {
+        document.getElementById("stock").style.display = "none";
+    }
+
+    const loadSuppliers = () => {
+        fetch(`/${restaurant}/admin/suppliers`)
+            .then(response => response.json())
+            .then(data => {
+                const suppliers = data;
+                const supplierTable = document.getElementById("supplierTableBody");
+                supplierTable.innerHTML = "";
+                suppliers.forEach(supplier => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${supplier.name}</td>
+                        <td>${supplier.phone}</td>
+                        <td>${supplier.email}</td>
+                        <td>${supplier.location}</td>`;
+                    supplierTable.appendChild(row);
+                });
+            })
+            .catch(err => console.error(err));
+    }
+
+    const loadIngredients = () => {
+        fetch(`/${restaurant}/admin/stock`)
+            .then(response => response.json())
+            .then(data => {
+                const stock = data;
+                const stockTable = document.getElementById("stockTableBody");
+                stockTable.innerHTML = "";
+                stock.forEach(item => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td id="stockName">${item.name}</td>
+                        <td>${item.quantity}</td>
+                        <td>${item.price}</td>
+                        <td>${item.min}</td>
+                        <td>${item.supplier.name}</td>
+                        <td><button class="btn btn-primary" id="orderStock">Order</button></td>`;
+                    stockTable.appendChild(row);
+                });
+            })
+            .catch(err => console.error(err));
+    }
+
+    // Event listeners
+
     dashboard = document.getElementById("dashboard");
     pastOrderLink = document.getElementById("pastOrders");
+    stockLink = document.getElementById("stockLink");
 
     dashboard.addEventListener("click", () => {
+        hideStockTable();
         ordersTable();
         dashboard.classList.add("active");
         pastOrderLink.classList.remove("active");
+        stockLink.classList.remove("active");
+
+        showOrdersDiv();
     });
 
     pastOrderLink.addEventListener("click", () => {
+        hideStockTable();
         pastOrdersTable();
+
         pastOrderLink.classList.add("active");
         dashboard.classList.remove("active");
+        stockLink.classList.remove("active");
+
+        showOrdersDiv();
+    });
+
+    stockLink.addEventListener("click", () => {
+        hideOrdersDiv();
+
+        stockLink.classList.add("active");
+        dashboard.classList.remove("active");
+        pastOrderLink.classList.remove("active");
+
+
+        const stock = document.getElementById("stock");
+        if (stock.style.display === "none") {
+            stock.style.display = "block";
+            loadIngredients();
+        }
     });
 
     document.getElementById("addIngredient").addEventListener("click", () => {

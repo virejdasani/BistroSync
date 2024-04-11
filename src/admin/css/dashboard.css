@@ -8,7 +8,7 @@ a:hover {
   text-decoration: none !important;
 }
 
-.orders-table {
+.orders-table, .stock-table {
   max-height: 40rem;
   overflow-y: auto;
 }
