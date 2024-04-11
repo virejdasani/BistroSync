@@ -38,6 +38,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // console.log(cart);
 
     const tableNumber = document.getElementById("tableNumber").value;
+    const cardHolderName = document.getElementById("cardHolderName").value;
+
+    if (!cardHolderName) {
+      notifier.alert("Please enter card holder name");
+      return;
+    }
 
     if (!tableNumber) {
       notifier.alert("Your table number is printed on your table");
@@ -61,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "ok") {
-          notifier.info("Checkout successful");
+          notifier.info("Your order will be served shortly");
           cart.length = 0; // clear cart
           renderCart();
           toggleModal();
@@ -100,13 +106,23 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
 
         const tableNumberInput = document.getElementById("tableNumberInput");
+        const cardHolderNameInput = document.getElementById(
+          "cardHolderNameInput"
+        );
 
         // add table number input
         tableNumberInput.innerHTML = `
-              <div>
-                Table Number: <input type="text" id="tableNumber">
-              </div>
-            `;
+          <div>
+            Table Number: <input type="text" id="tableNumber">
+          </div>
+        `;
+
+        // add card holder name input
+        cardHolderNameInput.innerHTML = `
+          <div>
+            Card Holder Name: <input type="text" id="cardHolderName">
+          </div>
+        `;
       });
     }
 

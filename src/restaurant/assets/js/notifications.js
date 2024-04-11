@@ -5,7 +5,7 @@ options = {
   labels: {
     success: "Added to cart",
     alert: "Alert",
-    info: "SUCCESS!",
+    info: "Checkout successful",
     warning: "Deleted from cart",
   },
   maxNotifications: 4,
@@ -13,7 +13,7 @@ options = {
     success: 2200,
     warning: 2200,
     alert: 2200,
-    info: 2200,
+    info: 3200,
   },
 };
 
