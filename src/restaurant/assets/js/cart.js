@@ -44,6 +44,11 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    if (cart.length === 0) {
+      notifier.alert("Your cart is empty");
+      return;
+    }
+
     // add this to mongodb
     const restaurant = window.location.pathname.split("/")[1];
     fetch(`/${restaurant}/checkout`, {
@@ -56,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "ok") {
-          notifier.alert("Checkout successful");
+          notifier.info("Checkout successful");
           cart.length = 0; // clear cart
           renderCart();
           toggleModal();
