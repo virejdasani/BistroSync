@@ -16,6 +16,7 @@ router.post("/checkout", async (req, res) => {
   // Save checkout to database
   const tableNumber = req.body.tableNumber;
   const items = req.body.items;
+  const custName = req.body.cardHolderName;
   const totalAmount = items.reduce((total, item) => total + item.price * item.quantity, 0);
   const company = req.company;
 
@@ -32,6 +33,7 @@ router.post("/checkout", async (req, res) => {
     items,
     totalAmount,
     tableNumber,
+    custName,
     company
   });
 

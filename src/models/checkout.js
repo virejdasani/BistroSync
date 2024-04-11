@@ -16,6 +16,7 @@ const checkoutSchema = new mongoose.Schema({
   ],
   totalAmount: Number,
   tableNumber: Number,
+  custName: String,
   createdAt: {
     type: Date,
     default: Date.now,

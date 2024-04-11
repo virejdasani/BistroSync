@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ items: cart, tableNumber }),
+      body: JSON.stringify({ items: cart, tableNumber, cardHolderName }),
     })
       .then((response) => response.json())
       .then((data) => {
