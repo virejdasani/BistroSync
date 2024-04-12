@@ -39,7 +39,6 @@ userSchema.virtual('url').get(function() {
 });
 
 userSchema.statics.validate = async function(username, password) {
-    console.log("Validating user");
     const foundUser = await this.findOne({username});
     if (!foundUser) {
         return false;
