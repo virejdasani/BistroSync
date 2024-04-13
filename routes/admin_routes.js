@@ -144,6 +144,32 @@ router.post('/stock/create', async function(req, res) {
     return res.json({status: 'ok'});
 });
 
+// list all purchase orders and handle creation
+router.route('/purchase_order')
+    .get(function(req, res) {
+        wip_pos = PurchaseOrder.find({company: req.company, status: 'pending'})
+                               .populate('supplier').populate('items.ingredient');
+        completed_pos = PurchaseOrder.find({company: req.company, status: 'delivered'})
+                                     .populate('supplier').populate('items.ingredient');
+
+        return res.json({wip_pos, completed_pos});
+    })
+    .post(async function(req, res) {
+        const {supplier, items} = req.body;
+        const company = req.company;
+        const order = await PurchaseOrder.create({supplier, items, company});
+        return res.json(order);
+    });
+
+router.post('/purchase_order/:id', async function(req, res) {
+    const order = await PurchaseOrder.findById(req.params.id);
+    if (order && order.company.toString() === req.company.toString()) {
+        order.status = 'delivered';
+        await order.save();
+        return res.json({status: 'ok'});
+    }
+});
+
 // get suppliers to fill dropdown in create ingredient form
 router.get('/suppliers', async function(req, res) {
     const company = req.company;
