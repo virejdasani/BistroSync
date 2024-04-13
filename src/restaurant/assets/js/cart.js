@@ -174,16 +174,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const blackBannerText = item.idCheck ? "18+" : "VEG";
 
         return `
-          <article class="hoodies">
+          <article class="menuItemArticle">
             ${
               showBlackBanner
-                ? `<div class="hoodies_sale">${blackBannerText}</div>`
+                ? `<div class="articleBlackBanner">${blackBannerText}</div>`
                 : ""
             }
-            <img src="${item.image}" alt="" class="hoodies_img">
-            <span class="hoodie_name">${item.name}</span>
+            <img src="${item.image}" alt="" class="foodItem_img">
+            <span class="foodItem_name">${item.name}</span>
             <p class="collection_desc">${item.description}</p>
-            <span class="hoodie_price">£${item.price.toFixed(2)}</span>
+            <span class="foodItem_price">£${item.price.toFixed(2)}</span>
             <button class="button-light addToCartButton" data-name="${
               item.name
             }" data-price="${item.price}" data-foodId=${item.id}">
