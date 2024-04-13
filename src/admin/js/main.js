@@ -3,7 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const restaurant = window.location.pathname.split("/")[1];
 
     const clearTable = () => {
-        return document.getElementById("ordersTableBody").innerHTML = "";
+        document.getElementById("note").textContent = "";
+        document.getElementById("ordersTableBody").innerHTML = "";
     };
 
     const attachCompleteButtonListeners = () => {
@@ -70,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td>${order.custName}</td>
                         <td>${item.name}</td>
                         <td id="foodId">${item.foodId}</td>
-                        <td>${item.quantity}</td>
                         <td>${item.price * item.quantity}</td>
                         <td><button class="btn btn-primary completeBtn">Complete</button></td>`
                 } else {
@@ -80,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td>${order.tableNumber}</td>
                         <td>${item.name}</td>
                         <td id="foodId">${item.foodId}</td>
-                        <td>${item.quantity}</td>
                         <td>${item.price * item.quantity}</td>`
                 }
                 orderTable.appendChild(row);
@@ -89,45 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
         attachCompleteButtonListeners();
     }
 
-    // load pending orders
-    const ordersTable = () => {
-        clearTable();
-        fetch(`/${restaurant}/admin/orders`)
-            .then(response => response.json())
-            .then(data => {
-                const orders = data;
-                document.getElementById("ordersType").innerHTML = "Pending Orders";
-                loadOrdersTable(orders, "pending");
-            })
-            .catch(err => console.error(err));
-    };
-    ordersTable();
-
-    // load past orders
-    const pastOrdersTable = () => {
-        clearTable();
-        fetch(`/${restaurant}/admin/past_orders`)
-            .then(response => response.json())
-            .then(data => {
-                const orders = data;
-                document.getElementById("ordersType").innerHTML = "Past Orders";
-                loadOrdersTable(orders, "past");
-            })
-            .catch(err => console.error(err));
-    };
-
-    const showOrdersDiv = () => {
-        document.getElementById("orders").style.display = "block";
-    }
-
-    const hideOrdersDiv = () => {
-        document.getElementById("orders").style.display = "none";
-    }
-
-    const hideStockTable = () => {
-        document.getElementById("stock").style.display = "none";
-    }
-
+    // load suppliers
     const loadSuppliers = () => {
         fetch(`/${restaurant}/admin/suppliers`)
             .then(response => response.json())
@@ -148,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(err => console.error(err));
     }
 
+    // load stock
     const loadIngredients = () => {
         fetch(`/${restaurant}/admin/stock`)
             .then(response => response.json())
@@ -169,6 +131,45 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch(err => console.error(err));
     }
+
+    const ordersTable = () => {
+        clearTable();
+        fetch(`/${restaurant}/admin/orders`)
+            .then(response => response.json())
+            .then(data => {
+                const orders = data;
+                document.getElementById("ordersType").textContent = "Pending Orders";
+                document.getElementById("note").textContent = "Note: table refreshes every 10 seconds.";
+                loadOrdersTable(orders, "pending");
+            })
+            .catch(err => console.error(err));
+    };
+    ordersTable();
+
+    const pastOrdersTable = () => {
+        clearTable();
+        fetch(`/${restaurant}/admin/past_orders`)
+            .then(response => response.json())
+            .then(data => {
+                const orders = data;
+                document.getElementById("ordersType").textContent = "Past Orders";
+                loadOrdersTable(orders, "past");
+            })
+            .catch(err => console.error(err));
+    };
+
+    const showOrdersDiv = () => {
+        document.getElementById("orders").style.display = "block";
+    }
+
+    const hideOrdersDiv = () => {
+        document.getElementById("orders").style.display = "none";
+    }
+
+    const hideStockTable = () => {
+        document.getElementById("stock").style.display = "none";
+    }
+
 
     // Event listeners
 
@@ -277,5 +278,12 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch(err => console.error(err));
     });
+
+    // check every 5 seconds for new orders
+    setInterval(() => {
+        if (document.getElementById("dashboard").classList.contains("active")) {
+            ordersTable();
+        }
+    }, 10000);
 
 });
