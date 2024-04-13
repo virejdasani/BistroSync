@@ -724,8 +724,11 @@ img {
   text-align: left;
 }
 
+.trigger {
+  margin-top: 5px;
+}
 
-/*Cart modal code*/
+/* Cart modal */
 
 .modal {
   position: fixed;
@@ -747,9 +750,22 @@ img {
   transform: translate(-50%, -50%);
   background-color: white;
   padding: 1rem 1.5rem;
-  width: 35rem;
   border-radius: 0.5rem;
 }
+
+/* modal-content width relative ot screen size, 35rem for laptop, 20 for mobile */
+@media screen and (min-width: 768px) {
+  .modal-content {
+    width: 35rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .modal-content {
+    width: 21rem;
+  }
+}
+
 
 .close-button {
   float: right;
@@ -790,8 +806,4 @@ img {
   transform: scale(1.01);
   background-color: #e1e1e1;
   transition: 0.3s;
-}
-
-.trigger {
-  margin-top: 5px;
 }
