@@ -55,6 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    const cartCount = document.getElementById("cartCount");
+    cartCount.textContent = "0 items";
+
     // add this to mongodb
     const restaurant = window.location.pathname.split("/")[1];
     fetch(`/${restaurant}/checkout`, {
@@ -182,7 +185,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <p class="collection_desc">${item.description}</p>
             <span class="hoodie_price">£${item.price.toFixed(2)}</span>
             <button class="button-light addToCartButton" data-name="${
-              item.name}" data-price="${item.price}" data-foodId=${item.id}">
+              item.name
+            }" data-price="${item.price}" data-foodId=${item.id}">
             Add to Cart<i class='bx bx-right-arrow button-icon'></i></button>
           </article>
         `;
