@@ -1,4 +1,3 @@
-// notifcations
 options = {
   position: "top-right",
   duration: 3000,
