@@ -1,14 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Megrim&display=swap');
+
 
 body {
   font-family: 'Barlow', sans-serif !important;
+}
+
+.megrim {
+  font-family: 'Megrim', cursive !important;
 }
 
 a:hover {
   text-decoration: none !important;
 }
 
-.orders-table, .stock-table {
+.orders-table,
+.stock-table {
   max-height: 40rem;
   overflow-y: auto;
 }
