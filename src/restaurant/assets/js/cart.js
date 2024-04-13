@@ -1,3 +1,15 @@
+// CART HANDLER
+
+// function to check if string is alpabetic ->
+function isAlphabetic(str) {
+  return /^[a-zA-Z]+$/.test(str);
+}
+
+// function to check if string is integer ->
+function isInteger(str) {
+  return /^\d+$/.test(str);
+}
+
 // render menu items from api
 document.addEventListener("DOMContentLoaded", () => {
   const restaurant = window.location.pathname.split("/")[1];
@@ -45,9 +57,19 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    if (!tableNumber) {
-      notifier.alert("Your table number is printed on your table");
+    if (!(isAlphabetic(cardHolderName))) {
+      notifier.alert("Please enter a valid name");
       return;
+    }
+
+    if (!tableNumber) {
+      notifier.alert("Please enter your table number that is printed on your table");
+      return;
+    }
+
+    if (!(isInteger(tableNumber.toString()))) {
+        notifier.alert("Please enter a valid table number");
+        return;
     }
 
     if (cart.length === 0) {
