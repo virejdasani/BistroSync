@@ -137,6 +137,17 @@ router.get('/stock', async function(req, res) {
     return res.json(ingredients);
 });
 
+router.get('/stock/low', async function(req, res) {
+    const company = req.company;
+    // find all ingredients that are low in stock
+    const ingredients = await Ingredient.aggregate([
+        {$match: {company: company}},
+        {$addFields: {low: {$lt: ['$quantity', '$min']}}},
+        {$match: {low: true}}
+    ]);
+    return res.json(ingredients);
+});
+
 router.post('/stock/create', async function(req, res) {
     const {name, quantity, price, min, supplier} = req.body;
     const unit = 'unit'; // testing

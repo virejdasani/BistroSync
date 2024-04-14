@@ -81,6 +81,10 @@
               Add Supplier
             </button>
             <p class="lead text-muted orders-display">
+              <div class="low-stock">
+                <ul id="lowStockList" style="color: red;"
+                </ul>
+              </div>
               <div class="stock-table">
                 <table class="table table-striped" id="stockTable">
                   <thead>
@@ -134,6 +138,7 @@
                     <th scope="col">Quantity</th>
                     <th scope="col">Supplier</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Date Ordered</th>
                   </tr>
                 </thead>
                 <tbody id="completedPurchaseOrdersTableBody">

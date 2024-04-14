@@ -171,6 +171,23 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(err => console.error(err));
     }
 
+    // load low stock
+    const lowStock = () => {
+        fetch(`/${restaurant}/admin/stock/low`)
+            .then(response => response.json())
+            .then(data => {
+                const stock = data;
+                const lowStockList = document.getElementById("lowStockList");
+                lowStockList.innerHTML = "";
+                stock.forEach(item => {
+                    const li = document.createElement("li");
+                    li.textContent = `${item.name} is low on stock - ${item.quantity} remaining`;
+                    lowStockList.appendChild(li);
+                });
+            })
+            .catch(err => console.error(err));
+    }
+
     // load purchase orders
     const loadPurchaseOrders = () => {
         fetch(`/${restaurant}/admin/purchase_order`)
@@ -309,6 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (stock.style.display === "none") {
             stock.style.display = "block";
             loadIngredients();
+            lowStock();
         }
     });
 
