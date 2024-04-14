@@ -31,6 +31,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    const attachOrderStockListeners = () => {
+        const orderStockBtns = document.querySelectorAll(".orderStock");
+        orderStockBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const id = btn.getAttribute("data-id");
+                document.getElementById("orderQuantity").setAttribute("data-id", id);
+            });
+        });
+    }
+
     const loadOrdersTable = (orders, type) => {
         // Add action header if pending orders
         if (type === "pending") {
@@ -70,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td>${order.tableNumber}</td>
                         <td>${order.custName}</td>
                         <td>${item.name}</td>
-                        <td id="foodId">${item.foodId}</td>
+                        <td hidden id="foodId">${item.foodId}</td>
                         <td>${item.price * item.quantity}</td>
                         <td><button class="btn btn-primary completeBtn">Complete</button></td>`
                 } else {
@@ -79,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td>${new Date(order.createdAt).toLocaleString()}</td>
                         <td>${order.tableNumber}</td>
                         <td>${item.name}</td>
-                        <td id="foodId">${item.foodId}</td>
+                        <td hidden id="foodId">${item.foodId}</td>
                         <td>${item.price * item.quantity}</td>`
                 }
                 orderTable.appendChild(row);
@@ -125,9 +135,13 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td>${item.price}</td>
                         <td>${item.min}</td>
                         <td>${item.supplier.name}</td>
-                        <td><button class="btn btn-primary" id="orderStock">Order</button></td>`;
+                        <td><button class="btn btn-primary orderStock" data-bs-toggle="modal"
+                            data-bs-target="#addPurchaseOrderModal" data-id="${item._id}">
+                            Order</button>
+                        </td>`;
                     stockTable.appendChild(row);
                 });
+                attachOrderStockListeners();
             })
             .catch(err => console.error(err));
     }
@@ -205,7 +219,6 @@ document.addEventListener("DOMContentLoaded", () => {
         dashboard.classList.remove("active");
         pastOrderLink.classList.remove("active");
 
-
         const stock = document.getElementById("stock");
         if (stock.style.display === "none") {
             stock.style.display = "block";
@@ -278,6 +291,29 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch(err => console.error(err));
     });
+
+    document.getElementById('addPurchaseOrderForm').addEventListener("submit", (e) => {
+        e.preventDefault();
+        const id = document.getElementById("orderQuantity").getAttribute("data-id");
+        const quantity = document.getElementById("orderQuantity").value;
+        fetch(`/${restaurant}/admin/purchase_order`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ id, quantity })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "ok") {
+                    document.getElementById("addPurchaseOrderForm").reset();
+                    alert("Order placed successfully");
+                }
+            })
+            .catch(err => console.error(err));
+    });
+
+
 
     // check every 5 seconds for new orders
     setInterval(() => {

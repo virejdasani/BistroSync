@@ -31,6 +31,9 @@
       <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center" id="stockLink">
         <span class="ml-2">Stock</span>
       </a>
+      <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center" id="purchaseOrdersLink">
+        <span class="ml-2">Purchase Orders</span>
+      </a>
     </div>
   </div>
 
@@ -53,7 +56,7 @@
                       <th scope="col" id="table">Table</th>
                       <th scope="col" id="cust-name">Customer Name</th>
                       <th scope="col" id="foodItem">Food Item</th>
-                      <th scope="col" id="foodId">Food ID</th>
+                      <th scope="col" id="foodId" hidden>Food ID</th>
                       <th scope="col" id="orderPrice">Price</th>
                       <th scope="col" id="action-col">Action</th>
                     </tr>
@@ -99,6 +102,30 @@
         </div>
       </div>
 
+      <!-- Purchase Orders -->
+      <div id="purchaseOrders" style="display: none;">
+        <div class="container">
+          <h1 class="display-4 mb-2 text-primary">Purchase Orders</h1>
+          <p class="lead text-muted orders-display">
+            <div class="purchase-orders-table">
+              <table class="table table-striped" id="purchaseOrdersTable">
+                <thead>
+                  <tr>
+                    <th scope="col">Ingredient</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Supplier</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="purchaseOrdersTableBody">
+                </tbody>
+              </table>
+            </div>
+          </p>
+        </div>
+      </div>
+
+
       <!-- MODALS -->
       <div class="modal fade" id="addIngredientModal" tabindex="-1" aria-labelledby="addIngredientModalLabel">
         <div class="modal-dialog">
@@ -143,6 +170,7 @@
         </div>
       </div>
 
+      <!-- Supplier Modal -->
       <div class="modal fade" id="addSupplierModal" tabindex="-1" aria-labelledby="addSupplierModalLabel">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -180,28 +208,30 @@
         </div>
       </div>
 
-      <!-- <div class="stock">
-              <div class="container">
-                <h1 class="display-4 mb-2 text-primary">Stock</h1>
-                <p class="lead text-muted orders-display">
-                  <div class="orders-table">
-                    <table class="table table-striped" id="stockTable">
-                      <thead id="stockTableHead">
-                        <tr>
-                          <th scope="col">Ingredient ID</th>
-                          <th scope="col">Name</th>
-                          <th scope="col">Quantity</th>
-                          <th scope="col">Price</th>
-                          <th scope="col" id="action-col">Action</th>
-                        </tr>
-                      </thead>
-                      <tbody id="stockTableBody">
-                      </tbody>
-                    </table>
-                  </div>
-                </p>
+
+      <!-- Add Purchase Order Modal -->
+      <div class="modal fade" id="addPurchaseOrderModal" tabindex="-1" aria-labelledby="addPurchaseOrderModalLabel">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="purchaseOrderModalTitle">Order Stock for</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="addPurchaseOrderForm" action="" method="POST" autocomplete="off">
+              <div class="modal-body">
+                <div class="form-floating mb-3">
+                  <input type="number" name="quantity" class="form-control" id="orderQuantity" placeholder="Quantity" required>
+                  <label for="orderQuantity">Quantity</label>
+                </div>
               </div>
-            </div> -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" id="orderSaveBtn">Save changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
 
     </main>
   </div>

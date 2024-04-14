@@ -6,6 +6,7 @@ const User = require('../src/models/user.js');
 const Checkout = require('../src/models/checkout');
 const Ingredient = require('../src/models/ingredient');
 const Supplier = require('../src/models/supplier');
+const PurchaseOrder = require('../src/models/purchase_order');
 
 router.use(express.static('src/admin'));
 
@@ -155,10 +156,13 @@ router.route('/purchase_order')
         return res.json({wip_pos, completed_pos});
     })
     .post(async function(req, res) {
-        const {supplier, items} = req.body;
+        const {id, quantity} = req.body;
+        // get ingredient by id
+        const ingredient = await Ingredient.findById(id);
         const company = req.company;
-        const order = await PurchaseOrder.create({supplier, items, company});
-        return res.json(order);
+        const order = await PurchaseOrder.create({company, supplier: ingredient.supplier,
+                                                    items: [{ingredient, quantity}]});
+        return res.json({status: 'ok', order});
     });
 
 router.post('/purchase_order/:id', async function(req, res) {
