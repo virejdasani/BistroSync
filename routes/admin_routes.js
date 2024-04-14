@@ -147,17 +147,16 @@ router.post('/stock/create', async function(req, res) {
 
 // list all purchase orders and handle creation
 router.route('/purchase_order')
-    .get(function(req, res) {
-        wip_pos = PurchaseOrder.find({company: req.company, status: 'pending'})
+    .get(async function(req, res) {
+        wip_pos = await PurchaseOrder.find({company: req.company, status: 'pending'})
                                .populate('supplier').populate('items.ingredient');
-        completed_pos = PurchaseOrder.find({company: req.company, status: 'delivered'})
+        completed_pos = await PurchaseOrder.find({company: req.company, status: 'delivered'})
                                      .populate('supplier').populate('items.ingredient');
 
         return res.json({wip_pos, completed_pos});
     })
     .post(async function(req, res) {
         const {id, quantity} = req.body;
-        // get ingredient by id
         const ingredient = await Ingredient.findById(id);
         const company = req.company;
         const order = await PurchaseOrder.create({company, supplier: ingredient.supplier,
@@ -170,6 +169,12 @@ router.post('/purchase_order/:id', async function(req, res) {
     if (order && order.company.toString() === req.company.toString()) {
         order.status = 'delivered';
         await order.save();
+        // update stock
+        order.items.forEach(async item => {
+            const stock = await Ingredient.findById(item.ingredient);
+            stock.quantity += item.quantity;
+            await stock.save();
+        });
         return res.json({status: 'ok'});
     }
 });

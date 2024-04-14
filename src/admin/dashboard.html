@@ -107,17 +107,36 @@
         <div class="container">
           <h1 class="display-4 mb-2 text-primary">Purchase Orders</h1>
           <p class="lead text-muted orders-display">
-            <div class="purchase-orders-table">
+            <div class="purchase-orders-table mb-3">
+              <h3>WIP Purchase Orders</h3>
               <table class="table table-striped" id="purchaseOrdersTable">
                 <thead>
                   <tr>
                     <th scope="col">Ingredient</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Supplier</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Date Ordered</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody id="purchaseOrdersTableBody">
+                </tbody>
+              </table>
+            </div>
+            <hr>
+            <div class="completed-purchase-orders-table">
+              <h3>Completed Purchase Orders</h3>
+              <table class="table table-striped" id="completedPurchaseOrdersTable">
+                <thead>
+                  <tr>
+                    <th scope="col">Ingredient</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Supplier</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody id="completedPurchaseOrdersTableBody">
                 </tbody>
               </table>
             </div>

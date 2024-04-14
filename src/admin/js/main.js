@@ -41,6 +41,31 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    const attachBookInListeners = () => {
+        const bookInBtns = document.querySelectorAll(".bookin");
+        bookInBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const id = btn.getAttribute("data-id");
+
+                fetch(`/${restaurant}/admin/purchase_order/${id}`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ status: "delivered" })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === "ok") {
+                            btn.parentElement.parentElement.remove();
+                            loadPurchaseOrders();
+                        }
+                    })
+                    .catch(err => console.error(err));
+            });
+        });
+    }
+
     const loadOrdersTable = (orders, type) => {
         // Add action header if pending orders
         if (type === "pending") {
@@ -146,6 +171,52 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(err => console.error(err));
     }
 
+    // load purchase orders
+    const loadPurchaseOrders = () => {
+        fetch(`/${restaurant}/admin/purchase_order`)
+            .then(response => response.json())
+            .then(data => {
+                const orders = data;
+                console.log("orders", orders);
+                const purchaseOrderTable = document.getElementById("purchaseOrdersTableBody");
+                const completedPOTable = document.getElementById("completedPurchaseOrdersTableBody");
+                purchaseOrderTable.innerHTML = "";
+                completedPOTable.innerHTML = "";
+
+                orders.wip_pos.forEach(order => {
+                    const row = document.createElement("tr");
+                    order.items.forEach(item => {
+                        row.innerHTML = `
+                            <td>${item.ingredient.name}</td>
+                            <td>${item.quantity}</td>
+                            <td>${order.supplier.name}</td>
+                            <td>${order.status}</td>
+                            <td>${new Date(order.createdAt).toLocaleDateString()}</td>
+                            <td><button class="btn btn-primary bookin" data-id="${order._id}">
+                            Book In</button></td>`;
+                        purchaseOrderTable.appendChild(row);
+                    });
+                });
+
+                attachBookInListeners();
+
+                orders.completed_pos.forEach(order => {
+                    const row = document.createElement("tr");
+                    order.items.forEach(item => {
+                        row.innerHTML = `
+                            <td>${item.ingredient.name}</td>
+                            <td>${item.quantity}</td>
+                            <td>${order.supplier.name}</td>
+                            <td>${order.status}</td>
+                            <td>${new Date(order.createdAt).toLocaleDateString()}</td>`;
+                        completedPOTable.appendChild(row);
+                    });
+                });
+            })
+            .catch(err => console.error(err));
+    }
+
+
     const ordersTable = () => {
         clearTable();
         fetch(`/${restaurant}/admin/orders`)
@@ -172,6 +243,18 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(err => console.error(err));
     };
 
+    dashboard = document.getElementById("dashboard");
+    pastOrderLink = document.getElementById("pastOrders");
+    stockLink = document.getElementById("stockLink");
+    poLink = document.getElementById("purchaseOrdersLink");
+
+    const resetActiveLinks = () => {
+        dashboard.classList.remove("active");
+        pastOrderLink.classList.remove("active");
+        stockLink.classList.remove("active");
+        poLink.classList.remove("active");
+    }
+
     const showOrdersDiv = () => {
         document.getElementById("orders").style.display = "block";
     }
@@ -184,45 +267,62 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("stock").style.display = "none";
     }
 
+    const hidePurchaseOrdersTable = () => {
+        document.getElementById("purchaseOrders").style.display = "none";
+        // remove 
+    }
+
 
     // Event listeners
 
-    dashboard = document.getElementById("dashboard");
-    pastOrderLink = document.getElementById("pastOrders");
-    stockLink = document.getElementById("stockLink");
-
+    
     dashboard.addEventListener("click", () => {
         hideStockTable();
+        hidePurchaseOrdersTable();
         ordersTable();
+
+        resetActiveLinks();
         dashboard.classList.add("active");
-        pastOrderLink.classList.remove("active");
-        stockLink.classList.remove("active");
 
         showOrdersDiv();
     });
 
     pastOrderLink.addEventListener("click", () => {
         hideStockTable();
+        hidePurchaseOrdersTable();
         pastOrdersTable();
 
+        resetActiveLinks();
         pastOrderLink.classList.add("active");
-        dashboard.classList.remove("active");
-        stockLink.classList.remove("active");
 
         showOrdersDiv();
     });
 
     stockLink.addEventListener("click", () => {
         hideOrdersDiv();
+        hidePurchaseOrdersTable();
 
+        resetActiveLinks();
         stockLink.classList.add("active");
-        dashboard.classList.remove("active");
-        pastOrderLink.classList.remove("active");
 
         const stock = document.getElementById("stock");
         if (stock.style.display === "none") {
             stock.style.display = "block";
             loadIngredients();
+        }
+    });
+
+    purchaseOrdersLink.addEventListener("click", () => {
+        hideOrdersDiv();
+        hideStockTable();
+
+        resetActiveLinks();
+        poLink.classList.add("active");
+
+        const purchaseOrders = document.getElementById("purchaseOrders");
+        if (purchaseOrders.style.display === "none") {
+            purchaseOrders.style.display = "block";
+            loadPurchaseOrders();
         }
     });
 
