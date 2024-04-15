@@ -141,6 +141,11 @@ router.post('/orders/:id', async function(req, res) {
                 const stock = await Ingredient.findOne({name: ingredient, company: order.company});
                 if (stock) {
                     stock.quantity -= 1;
+                    // auto create purchase order if stock is low
+                    if (stock.quantity < stock.min) {
+                        const order = await PurchaseOrder.create({company: stock.company, supplier: stock.supplier,
+                                                                  items: [{ingredient: stock, quantity: stock.min - stock.quantity}]});
+                    }
                     await stock.save();
                 } else {
                     console.log("no stock");
