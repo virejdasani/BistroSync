@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // load low stock
-    const lowStock = () => {
+    const loadLowStock = () => {
         fetch(`/${restaurant}/admin/stock/low`)
             .then(response => response.json())
             .then(data => {
@@ -371,7 +371,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (stock.style.display === "none") {
             stock.style.display = "block";
             loadIngredients();
-            lowStock();
+            loadLowStock();
         }
     });
 

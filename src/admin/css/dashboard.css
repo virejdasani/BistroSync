@@ -19,7 +19,8 @@ a:hover {
 }
 
 .orders-table,
-.stock-table {
+.stock-table,
+.completed-purchase-orders-table {
   max-height: 40rem;
   overflow-y: auto;
 }
