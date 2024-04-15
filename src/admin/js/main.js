@@ -253,6 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(data => {
                 const orders = data;
                 document.getElementById("ordersType").textContent = "Pending Orders";
+                document.getElementById("dateFilter").style.display = "none";
                 document.getElementById("note").textContent = "Note: table refreshes every 10 seconds.";
                 loadOrdersTable(orders, "pending");
             })
@@ -260,25 +261,39 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     ordersTable();
 
-    const pastOrdersTable = () => {
+    const pastOrdersTable = (from, to) => {
         clearTable();
-        const today_date = new Date().toISOString().slice(0, 10);
-        loadSales(today_date, today_date, 'todaySales');
 
-        let mtd = new Date();
+        let from_date = from;
+        let to_date = to;
+
+        if (!from || !to) {
+            from_date = new Date().toISOString().slice(0, 10);
+            to_date = from_date;
+        }
+
+        const mtd = new Date();
         const first_day = new Date(mtd.getFullYear(), mtd.getMonth(), 1).toISOString().slice(0, 10);
-        loadSales(first_day, today_date, 'monthSales');
-
-        let ytd = new Date();
+        const ytd = new Date();
         ytd.setDate(1);
         ytd.setMonth(0);
-        loadSales(ytd.toISOString().slice(0, 10), today_date, 'yearSales');
 
-        fetch(`/${restaurant}/admin/past_orders`)
+        loadSales(from_date, to_date, 'todaySales');
+        loadSales(first_day, to_date, 'monthSales');
+        loadSales(ytd.toISOString().slice(0, 10), to_date, 'yearSales');
+
+        let url = `/${restaurant}/admin/past_orders`;
+
+        if (from && to) {
+            url += `?from=${from}&to=${to}`;
+        }
+
+        fetch(url)
             .then(response => response.json())
             .then(data => {
                 const orders = data;
                 document.getElementById("ordersType").textContent = "Past Orders";
+                document.getElementById("dateFilter").style.display = "block";
                 loadOrdersTable(orders, "past");
             })
             .catch(err => console.error(err));
@@ -322,7 +337,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Event listeners
 
-    
     dashboard.addEventListener("click", () => {
         hideStockTable();
         hidePurchaseOrdersTable();
@@ -442,7 +456,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(err => console.error(err));
     });
 
-    document.getElementById('addPurchaseOrderForm').addEventListener("submit", (e) => {
+    document.getElementById("addPurchaseOrderForm").addEventListener("submit", (e) => {
         e.preventDefault();
         const id = document.getElementById("orderQuantity").getAttribute("data-id");
         const quantity = document.getElementById("orderQuantity").value;
@@ -463,7 +477,14 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(err => console.error(err));
     });
 
-
+    document.getElementById("dateFilterForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const from = document.getElementById("fromDate").value;
+        const to = document.getElementById("toDate").value;
+        document.getElementById("filterSalesTitle").textContent = `Sales from ${from} to ${to}`;
+        loadSales(from, to, 'filterSales');
+        pastOrdersTable(from, to);
+    });
 
     // check every 5 seconds for new orders
     setInterval(() => {
