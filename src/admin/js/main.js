@@ -351,6 +351,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(data => {
                 const suppliers = data;
                 const supplierSelect = document.getElementById("stockSupplier");
+                supplierSelect.innerHTML = "";
                 suppliers.forEach(supplier => {
                     const option = document.createElement("option");
                     option.value = supplier._id;
