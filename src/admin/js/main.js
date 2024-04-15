@@ -233,9 +233,21 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(err => console.error(err));
     }
 
+    const loadSales = (from, to, id) => {
+        fetch(`/${restaurant}/admin/sales?from=${from}&to=${to}`)
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector("." + id).style.display = "block";
+                document.getElementById(id).textContent = '£' + data.total;
+            })
+            .catch(err => console.error(err));
+    }
 
     const ordersTable = () => {
         clearTable();
+        today_date = new Date().toISOString().slice(0, 10);
+        today_sales = loadSales(today_date, today_date, 'todaySales');
+
         fetch(`/${restaurant}/admin/orders`)
             .then(response => response.json())
             .then(data => {
@@ -250,6 +262,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const pastOrdersTable = () => {
         clearTable();
+        today_date = new Date().toISOString().slice(0, 10);
+        today_sales = loadSales(today_date, today_date, 'todaySales');
+
+        mtd = new Date();
+        first_day = new Date(mtd.getFullYear(), mtd.getMonth(), 1).toISOString().slice(0, 10);
+        mtd_sales = loadSales(first_day, today_date, 'monthSales');
+
         fetch(`/${restaurant}/admin/past_orders`)
             .then(response => response.json())
             .then(data => {
@@ -276,8 +295,15 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("orders").style.display = "block";
     }
 
+    const hideSalesDiv = () => {
+        document.querySelectorAll(".sales").forEach(sale => {
+            sale.style.display = "none";
+        });
+    }
+
     const hideOrdersDiv = () => {
         document.getElementById("orders").style.display = "none";
+        hideSalesDiv();
     }
 
     const hideStockTable = () => {
@@ -286,7 +312,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const hidePurchaseOrdersTable = () => {
         document.getElementById("purchaseOrders").style.display = "none";
-        // remove 
     }
 
 
@@ -296,6 +321,7 @@ document.addEventListener("DOMContentLoaded", () => {
     dashboard.addEventListener("click", () => {
         hideStockTable();
         hidePurchaseOrdersTable();
+        hideSalesDiv();
         ordersTable();
 
         resetActiveLinks();

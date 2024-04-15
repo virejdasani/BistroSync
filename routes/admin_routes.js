@@ -40,19 +40,41 @@ router.route('/login')
         }
     });
 
-router.route('/dashboard')
-    .get(function(req, res) {
-        res.sendFile(path.resolve("src/admin/dashboard.html"));
+router.get('/dashboard', function(req, res) {
+    res.sendFile(path.resolve("src/admin/dashboard.html"));
+});
+
+router.get('/sales', async function(req, res) {
+    const from_date = req.query.from;
+    let to_date = req.query.to;
+    const company = req.company;
+
+    if (to_date == from_date) {
+        to_date = new Date(to_date);
+        to_date.setDate(to_date.getDate() + 1);
+    }
+
+    checkouts = await Checkout.find({company:company, createdAt: {$gte: from_date, $lt: to_date}});
+
+    let total = 0;
+    checkouts.forEach(checkout => {
+        checkout.items.forEach(item => {
+            total += item.price * item.quantity;
+        });
     });
 
-router.route('/logout')
-    .get(function(req, res) {
-        const company = req.company;
-        req.session.user_id = null;
-        req.session.username = null;
-        req.company = null;
-        res.redirect(`/${company}/admin/login`);
-    });
+    total = Math.round((total + Number.EPSILON) * 100) / 100;
+
+    return res.json({total});
+});
+
+router.get('/logout', function(req, res) {
+    const company = req.company;
+    req.session.user_id = null;
+    req.session.username = null;
+    req.company = null;
+    res.redirect(`/${company}/admin/login`);
+});
 
 router.get('/orders', async function(req, res) {
     const company = req.company;

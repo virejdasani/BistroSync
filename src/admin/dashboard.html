@@ -67,6 +67,26 @@
               </div>
             </p>
           </div>
+          <div class="mb-2" id="sales">
+            <div class="row">
+              <div class="col sales todaySales" style="display: none;">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Total Sales Today</h5>
+                    <h5 class="card-text" id="todaySales"></h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col sales monthSales" style="display: none;">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Total Sales Month to Date</h5>
+                    <h5 class="card-text" id="monthSales"></h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- STOCK DIV -->
@@ -82,7 +102,7 @@
             </button>
             <p class="lead text-muted orders-display">
               <div class="low-stock">
-                <ul id="lowStockList" style="color: red;">
+                <ul id="lowStockList">
                 </ul>
               </div>
               <div class="stock-table">
