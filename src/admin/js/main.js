@@ -262,12 +262,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const pastOrdersTable = () => {
         clearTable();
-        today_date = new Date().toISOString().slice(0, 10);
-        today_sales = loadSales(today_date, today_date, 'todaySales');
+        const today_date = new Date().toISOString().slice(0, 10);
+        loadSales(today_date, today_date, 'todaySales');
 
-        mtd = new Date();
-        first_day = new Date(mtd.getFullYear(), mtd.getMonth(), 1).toISOString().slice(0, 10);
-        mtd_sales = loadSales(first_day, today_date, 'monthSales');
+        let mtd = new Date();
+        const first_day = new Date(mtd.getFullYear(), mtd.getMonth(), 1).toISOString().slice(0, 10);
+        loadSales(first_day, today_date, 'monthSales');
+
+        let ytd = new Date();
+        ytd.setDate(1);
+        ytd.setMonth(0);
+        loadSales(ytd.toISOString().slice(0, 10), today_date, 'yearSales');
 
         fetch(`/${restaurant}/admin/past_orders`)
             .then(response => response.json())
