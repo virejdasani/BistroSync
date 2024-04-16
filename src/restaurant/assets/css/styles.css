@@ -76,6 +76,17 @@ body {
   display: inline;
 }
 
+.separator {
+  border-top: 1px solid #d1d1d1;
+  border-radius: 5px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
 .cartItem {
   display: flex;
   justify-content: space-between;
