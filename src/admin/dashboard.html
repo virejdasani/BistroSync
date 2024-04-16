@@ -87,38 +87,38 @@
                 </table>
               </div>
             </p>
-          </div>
-          <div class="mb-2" id="sales">
-            <div class="row">
-              <div class="col sales todaySales" style="display: none;">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Total Sales Today</h5>
-                    <h5 class="card-text" id="todaySales"></h5>
+            <div class="mb-2" id="sales">
+              <div class="row">
+                <div class="col sales todaySales" style="display: none;">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Total Sales Today</h5>
+                      <h5 class="card-text" id="todaySales"></h5>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col sales monthSales" style="display: none;">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Total Sales Month to Date</h5>
-                    <h5 class="card-text" id="monthSales"></h5>
+                <div class="col sales monthSales" style="display: none;">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Total Sales Month to Date</h5>
+                      <h5 class="card-text" id="monthSales"></h5>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col sales yearSales" style="display: none;">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Total Sales Year to Date</h5>
-                    <h5 class="card-text" id="yearSales"></h5>
+                <div class="col sales yearSales" style="display: none;">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Total Sales Year to Date</h5>
+                      <h5 class="card-text" id="yearSales"></h5>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col sales filterSales" style="display: none;">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title" id="filterSalesTitle"></h5>
-                    <h5 class="card-text" id="filterSales"></h5>
+                <div class="col sales filterSales" style="display: none;">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title" id="filterSalesTitle"></h5>
+                      <h5 class="card-text" id="filterSales"></h5>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -161,48 +161,77 @@
             </p>
           </div>
         </div>
-      </div>
 
-      <!-- Purchase Orders -->
-      <div id="purchaseOrders" style="display: none;">
-        <div class="container">
-          <h1 class="display-4 mb-2 text-primary">Purchase Orders</h1>
-          <p class="lead text-muted orders-display">
-            <div class="purchase-orders-table mb-3">
-              <h3>WIP Purchase Orders</h3>
-              <table class="table table-striped" id="purchaseOrdersTable">
-                <thead>
-                  <tr>
-                    <th scope="col">Ingredient</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Supplier</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Date Ordered</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody id="purchaseOrdersTableBody">
-                </tbody>
-              </table>
-            </div>
-            <hr>
-            <div class="completed-purchase-orders-table">
-              <h3>Completed Purchase Orders</h3>
-              <table class="table table-striped" id="completedPurchaseOrdersTable">
-                <thead>
-                  <tr>
-                    <th scope="col">Ingredient</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Supplier</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Date Ordered</th>
-                  </tr>
-                </thead>
-                <tbody id="completedPurchaseOrdersTableBody">
-                </tbody>
-              </table>
-            </div>
-          </p>
+        <!-- Purchase Orders -->
+        <div id="purchaseOrders" style="display: none;">
+          <div class="container">
+            <h1 class="display-4 mb-2 text-primary">Purchase Orders</h1>
+            <p class="lead text-muted orders-display">
+              <div class="purchase-orders-table mb-3">
+                <h3>WIP Purchase Orders</h3>
+                <div id="POdateFilter" style="display: none;">
+                  <form id="POdateFilterForm">
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-floating mb-3">
+                          <input type="date" class="form-control" id="POfromDate" required>
+                          <label for="POfromDate">From</label>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-floating mb-3">
+                          <input type="date" class="form-control" id="POtoDate" required>
+                          <label for="POtoDate">To</label>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <button type="submit" class="btn btn-primary" id="filterPO">Filter</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <table class="table table-striped" id="purchaseOrdersTable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Ingredient</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Supplier</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Date Ordered</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="purchaseOrdersTableBody">
+                  </tbody>
+                </table>
+              </div>
+              <hr>
+              <div class="completed-purchase-orders-table">
+                <h3>Completed Purchase Orders</h3>
+                <table class="table table-striped" id="completedPurchaseOrdersTable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Ingredient</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Supplier</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Date Ordered</th>
+                    </tr>
+                  </thead>
+                  <tbody id="completedPurchaseOrdersTableBody">
+                  </tbody>
+                </table>
+              </div>
+              <div class="costs">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Total Cost of Purchase Orders</h5>
+                    <h5 class="card-text" id="costs"></h5>
+                  </div>
+                </div>
+              </div>
+            </p>
+          </div>
         </div>
       </div>
 

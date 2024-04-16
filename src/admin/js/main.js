@@ -229,6 +229,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         completedPOTable.appendChild(row);
                     });
                 });
+
+                loadCosts();
             })
             .catch(err => console.error(err));
     }
@@ -239,6 +241,15 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(data => {
                 document.querySelector("." + id).style.display = "block";
                 document.getElementById(id).textContent = '£' + data.total;
+            })
+            .catch(err => console.error(err));
+    }
+
+    const loadCosts = () => {
+        fetch(`/${restaurant}/admin/purchase_order/costs`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("costs").textContent = '£' + data.total;
             })
             .catch(err => console.error(err));
     }
