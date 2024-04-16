@@ -1,6 +1,6 @@
-// function to check if string is alpabetic
+// function to check if string is alphabetic
 function isAlphabetic(str) {
-  return /^[a-zA-Z]+$/.test(str);
+  return /^[a-zA-Z\s]+$/.test(str);
 }
 
 // function to check if string is integer
