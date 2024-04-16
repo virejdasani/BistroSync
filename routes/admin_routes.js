@@ -234,6 +234,31 @@ router.post('/purchase_order/:id', async function(req, res) {
     }
 });
 
+router.get('/purchase_order/costs', async function(req, res) {
+    const company = req.company;
+    const from = req.query.from;
+    let to = req.query.to;
+    let orders;
+    if (from && to) {
+        to = new Date(to);
+        if (to == from) {
+            to.setDate(to.getDate() + 1);
+        }
+        to.setHours(23);
+        orders = await PurchaseOrder.find({company: company, status: 'delivered', createdAt: {$gte: from, $lt: to}}).populate('items.ingredient');
+    } else {
+        orders = await PurchaseOrder.find({company: company, status: 'delivered'}).populate('items.ingredient');
+    }
+
+    let total = 0;
+    orders.forEach(order => {
+        order.items.forEach(item => {
+            total += item.quantity * item.ingredient.price;
+        });
+    });
+    return res.json({total});
+});
+
 // get suppliers to fill dropdown in create ingredient form
 router.get('/suppliers', async function(req, res) {
     const company = req.company;
