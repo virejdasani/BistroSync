@@ -275,13 +275,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const pastOrdersTable = (from, to) => {
         clearTable();
 
-        let from_date = from;
-        let to_date = to;
-
-        if (!from || !to) {
-            from_date = new Date().toISOString().slice(0, 10);
-            to_date = from_date;
-        }
+        from_date = new Date().toISOString().slice(0, 10);
+        to_date = from_date;
 
         const mtd = new Date();
         const first_day = new Date(mtd.getFullYear(), mtd.getMonth(), 1).toISOString().slice(0, 10);
