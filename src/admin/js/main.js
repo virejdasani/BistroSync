@@ -69,6 +69,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const loadOrdersTable = (orders, type) => {
         // Add action header if pending orders
         if (type === "pending") {
+            if (orders.length === 0) {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td colspan="8">No Pending Orders</td>`;
+                document.getElementById("ordersTableBody").appendChild(row);
+            }
             if (!document.getElementById("cust-name")) {
                 const custNameCol = document.createElement("th");
                 custNameCol.id = "cust-name";
@@ -200,6 +206,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 purchaseOrderTable.innerHTML = "";
                 completedPOTable.innerHTML = "";
 
+                // if there are no orders
+                if (orders.wip_pos.length === 0) {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td colspan="6">No WIP Purchase Orders</td>`;
+                    purchaseOrderTable.appendChild(row);
+                }
                 orders.wip_pos.forEach(order => {
                     const row = document.createElement("tr");
                     order.items.forEach(item => {
