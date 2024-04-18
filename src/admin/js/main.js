@@ -500,7 +500,10 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         const from = document.getElementById("fromDate").value;
         const to = document.getElementById("toDate").value;
-        document.getElementById("filterSalesTitle").textContent = `Sales from ${from} to ${to}`;
+        // format dates to dd-mm-yyyy
+        const from_formatted = from.split("-").reverse().join("-");
+        const to_formatted = to.split("-").reverse().join("-");
+        document.getElementById("filterSalesTitle").textContent = `Sales from ${from_formatted} to ${to_formatted}`;
         loadSales(from, to, 'filterSales');
         pastOrdersTable(from, to);
     });
