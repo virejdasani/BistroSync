@@ -42,6 +42,7 @@
       case '1':
         document.querySelector('.alert').style.display = 'block';
         document.querySelector('.alert').innerHTML = 'Invalid username or password';
+        document.getElementById('floatingInput').value = urlParams.get('username');
         break;
       case '2':
         document.querySelector('.alert').style.display = 'block';
