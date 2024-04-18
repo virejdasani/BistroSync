@@ -508,7 +508,12 @@ document.addEventListener("DOMContentLoaded", () => {
         pastOrdersTable(from, to);
     });
 
-    // check every 5 seconds for new orders
+    document.getElementById('clearFilter').addEventListener("click", () => {
+        document.getElementById("dateFilterForm").reset();
+        pastOrdersTable();
+    });
+
+    // check every 10 seconds for new orders
     setInterval(() => {
         if (document.getElementById("dashboard").classList.contains("active")) {
             ordersTable();
