@@ -138,7 +138,10 @@ router.post('/orders/:id', async function(req, res) {
             }
 
             ingredients.forEach(async ingredient => {
-                const stock = await Ingredient.findOne({name: ingredient, company: order.company});
+
+                ingredient = ingredient.toLowerCase().replace(/\s/g, '');
+                const stock = await Ingredient.findOne({name: { $regex: new RegExp('^' + ingredient + '$', 'i') }, company: order.company});
+
                 if (stock) {
                     stock.quantity -= 1;
                     // auto create purchase order if stock is low
