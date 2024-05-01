@@ -61,3 +61,5 @@ app.use("/bistrosync/admin", bistrosyncAdminRouter);
 app.listen(port, () => {
     console.log("Started server");
 });
+
+module.exports = app;
