@@ -11,6 +11,10 @@ beforeAll(async () => {
     await mongoose.connect(url);
 });
 
+afterAll(async () => {
+  await mongoose.connection.close();
+});
+
 // Test GET login page
 describe('GET /test/admin/login', () => {
   it('It should GET the login page', async () => {
@@ -31,26 +35,16 @@ describe('POST /test/admin/login', () => {
   });
 });
 
-// Test the GET route
-// describe('GET /orders', () => {
-//   it('It should GET all the orders', async () => {
-//     const res = await request(app).get('/test/admin/dashboard');
-//     // if redirected to login
-//     if (res.statusCode === 302) {
-//       const login = await request(app).post('/test/admin/login').send({
-//         username: "admin",
-//         password: "admin"
-//       });
-//       expect(login.statusCode).toEqual(200);
-//     }
-//     expect(res.statusCode).toEqual(200);
-//     //expect(res.body).toBeInstanceOf(Array);
-//     console.log(res.body);
-//   });
-// });
-
-
-// close the server after the tests
-afterAll(async () => {
-  await mongoose.connection.close();
+// Test invalid login
+describe('POST /test/admin/login', () => {
+  it('It should not login and return to login page with error query string', async () => {
+    const res = await request(app).post('/test/admin/login').send({
+      username: "admin",
+      password: "wrongpassword"
+    });
+    // expects a redirect
+    expect(res.statusCode).toEqual(302);
+    expect(res.header.location).toEqual('login?username=admin&error=1');
+  });
 });
+
