@@ -58,8 +58,11 @@ app.use("/:restaurant/admin", (req, res, next) => {
 app.use("/bistrosync/admin", bistrosyncAdminRouter);
 
 
-app.listen(port, () => {
-    console.log("Started server");
-});
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(port, () => {
+        console.log("Started server");
+    });
+}
+
 
 module.exports = app;
