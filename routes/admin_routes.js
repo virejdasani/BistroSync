@@ -142,16 +142,26 @@ router.post('/orders/:id', async function(req, res) {
                 ingredient = ingredient.toLowerCase().replace(/\s/g, '');
                 const stock = await Ingredient.findOne({name: { $regex: new RegExp('^' + ingredient + '$', 'i') }, company: order.company});
 
-                if (stock) {
+                if (stock && stock.quantity > 0) {
                     stock.quantity -= 1;
                     // auto create purchase order if stock is low
                     if (stock.quantity < stock.min) {
-                        const order = await PurchaseOrder.create({company: stock.company, supplier: stock.supplier,
-                                                                  items: [{ingredient: stock, quantity: stock.min - stock.quantity}]});
+                        // check if purchase order already exists for this ingredient
+                        const order = await PurchaseOrder.findOne({company: stock.company, supplier: stock.supplier, items: { $elemMatch: {ingredient: stock}},
+                                                                    status: 'pending'});
+                        if (!order) {
+                            try {
+                                const order = await PurchaseOrder.create({company: stock.company, supplier: stock.supplier,
+                                                                            items: [{ingredient: stock, quantity: stock.min - stock.quantity}]});
+                            } catch (err) {
+                                console.log(err);
+                            }
+                        }
                     }
                     await stock.save();
                 } else {
-                    console.log("no stock");
+                    await Ingredient.create({name: ingredient, quantity: 0, unit: 'unit', min: 10, price: 0.5, company: order.company,
+                                            supplier: '6615ada7079a82ba8f8a9149'});
                 }
             });
 
