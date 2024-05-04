@@ -43,3 +43,19 @@ describe('POST /test/admin/login', () => {
       });
   });
 });
+
+// Test blank login
+describe('POST /test/admin/login', () => {
+  it('It should not login and return to login page with error query string', () => {
+    return request(app)
+      .post('/test/admin/login')
+      .send({
+        username: "",
+        password: ""
+      })
+      .then(response => {
+        expect(response.statusCode).toBe(302);
+        expect(response.header.location).toBe('login?error=1');
+      });
+  });
+});
